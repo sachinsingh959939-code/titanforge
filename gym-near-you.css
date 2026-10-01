@@ -1,0 +1,41 @@
+:root { --gym-lime: #d4ff00; --gym-orange: #ff7043; }
+body.gym-near-page { background: #080b0f; }
+.gym-near-navbar { background: rgba(8, 11, 15, .92); }
+.gym-near-navbar .navbar-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.gym-near-nav-links { display: flex; gap: 24px; margin-left: auto; margin-right: 26px; }
+.gym-near-nav-links a { color: var(--text-secondary); font-size: .86rem; font-weight: 700; }
+.gym-near-nav-links a:hover { color: var(--gym-lime); }
+.gym-near-navbar .btn { margin-left: 0; flex-shrink: 0; }
+.gym-near-hero { min-height: 680px; display: flex; align-items: center; position: relative; overflow: hidden; background: radial-gradient(circle at 82% 20%, rgba(212,255,0,.13), transparent 28%), linear-gradient(135deg, #111820 0%, #080b0f 55%, #17110d 100%); }
+.gym-near-hero::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .22; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 48px 48px; mask-image: linear-gradient(90deg, black, transparent 80%); }
+.gym-near-hero-grid { width: 100%; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr); gap: 80px; align-items: center; position: relative; z-index: 1; }
+.gym-near-hero-copy { max-width: 700px; animation: gym-near-rise .8s ease both; }
+.gym-near-hero h1 { font-size: clamp(3rem, 7vw, 6.5rem); line-height: .92; letter-spacing: -.04em; margin: 18px 0 24px; color: #fff; }
+.gym-near-hero h1 span, .gym-near-section-heading h2 span { color: var(--gym-lime); }
+.gym-near-hero-copy > p { max-width: 570px; color: var(--text-secondary); font-size: 1.08rem; line-height: 1.7; }
+.gym-near-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+.gym-near-stats { display: flex; gap: 36px; margin-top: 50px; }
+.gym-near-stats div { display: grid; gap: 3px; }
+.gym-near-stats strong { font-size: 1.45rem; color: #fff; }
+.gym-near-stats span { color: var(--text-muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; }
+.gym-near-hero-panel { min-height: 390px; padding: 38px; border: 1px solid rgba(212,255,0,.25); background: linear-gradient(145deg, rgba(212,255,0,.1), rgba(12,17,21,.85) 46%); box-shadow: 20px 20px 0 rgba(255,112,67,.12); position: relative; overflow: hidden; animation: gym-near-rise .8s .15s ease both; }
+.gym-near-hero-panel::before { content: ''; width: 230px; height: 230px; position: absolute; right: -90px; top: -80px; border-radius: 50%; background: var(--gym-orange); filter: blur(70px); opacity: .42; }
+.gym-near-hero-panel h2 { position: relative; margin: 100px 0 48px; font-size: 2.3rem; line-height: 1.03; color: #fff; }
+.gym-near-focus-row { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-top: 1px solid rgba(255,255,255,.12); color: var(--text-secondary); }
+.gym-near-focus-row span { color: var(--gym-orange); font-weight: 900; }
+.gym-near-focus-row strong { color: #fff; font-size: .9rem; }
+.gym-near-section { padding: 100px 0; }
+.gym-near-finder-section { background: #0a0e13; }
+.gym-near-section-heading { display: flex; justify-content: space-between; gap: 40px; align-items: end; margin-bottom: 38px; }
+.gym-near-section-heading h2 { font-size: clamp(2.1rem, 4vw, 3.4rem); margin: 12px 0 0; color: #fff; }
+.gym-near-section-heading > p { max-width: 420px; color: var(--text-secondary); line-height: 1.6; }
+.gym-near-section-heading.compact { margin-bottom: 30px; }
+.gym-near-process { padding: 100px 0; background: #0d1217; }
+.gym-near-banner { padding: 48px 0; background: linear-gradient(90deg, rgba(212,255,0,.12), rgba(255,112,67,.1)); border-top: 1px solid rgba(212,255,0,.2); border-bottom: 1px solid rgba(212,255,0,.2); }
+.gym-near-banner-inner { display: flex; justify-content: space-between; gap: 40px; align-items: center; }
+.gym-near-banner h2 { color: #fff; margin-top: 12px; }
+.gym-near-footer { padding-top: 25px; }
+.gym-near-footer a { color: var(--gym-lime); }
+@keyframes gym-near-rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 800px) { .gym-near-nav-links { display: none; } .gym-near-hero { min-height: auto; padding: 90px 0; } .gym-near-hero-grid { grid-template-columns: 1fr; gap: 45px; } .gym-near-hero h1 { font-size: clamp(3rem, 15vw, 5rem); } .gym-near-section-heading, .gym-near-banner-inner { display: block; } .gym-near-section-heading > p { margin-top: 20px; } .gym-near-banner .btn { margin-top: 22px; } }
+@media (max-width: 480px) { .gym-near-stats { gap: 18px; } .gym-near-stats strong { font-size: 1.15rem; } }

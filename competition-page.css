@@ -1,0 +1,68 @@
+:root { --competition-lime: #d4ff00; --competition-orange: #ff7043; --competition-panel: rgba(20, 25, 31, .84); }
+body.competition-page { background: #080b0f; }
+.competition-navbar { background: rgba(8, 11, 15, .92); }
+.competition-navbar .navbar-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.competition-nav-links { display: flex; gap: 24px; margin-left: auto; margin-right: 26px; }
+.competition-nav-links a { color: var(--text-secondary); font-size: .86rem; font-weight: 700; }
+.competition-nav-links a:hover { color: var(--competition-lime); }
+.competition-navbar .btn { margin-left: 0; flex-shrink: 0; }
+.competition-hero { min-height: 680px; display: flex; align-items: center; position: relative; overflow: hidden; background: radial-gradient(circle at 84% 25%, rgba(212,255,0,.13), transparent 30%), linear-gradient(135deg, #111820 0%, #080b0f 55%, #17110d 100%); }
+.competition-hero::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .22; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 48px 48px; mask-image: linear-gradient(90deg, black, transparent 80%); }
+.competition-hero-grid { width: 100%; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr); gap: 80px; align-items: center; position: relative; z-index: 1; }
+.competition-hero-copy { max-width: 700px; animation: competition-rise .8s ease both; }
+.competition-hero h1 { font-size: clamp(3rem, 7vw, 6.5rem); line-height: .92; letter-spacing: -.04em; margin: 18px 0 24px; color: #fff; }
+.competition-hero h1 span, .competition-section-heading h2 span { color: var(--competition-lime); }
+.competition-hero-copy > p { max-width: 570px; color: var(--text-secondary); font-size: 1.08rem; line-height: 1.7; }
+.competition-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+.competition-hero-stats { display: flex; gap: 36px; margin-top: 50px; }
+.competition-hero-stats div { display: grid; gap: 3px; }
+.competition-hero-stats strong { font-size: 1.7rem; color: #fff; }
+.competition-hero-stats span { color: var(--text-muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; }
+.competition-hero-panel { min-height: 390px; padding: 38px; border: 1px solid rgba(212,255,0,.25); background: linear-gradient(145deg, rgba(212,255,0,.1), rgba(12,17,21,.85) 46%); box-shadow: 20px 20px 0 rgba(255,112,67,.12); position: relative; overflow: hidden; animation: competition-rise .8s .15s ease both; }
+.competition-hero-panel::before { content: ''; width: 220px; height: 220px; position: absolute; right: -90px; top: -80px; border-radius: 50%; background: var(--competition-orange); filter: blur(70px); opacity: .42; }
+.panel-kicker { color: var(--competition-lime); font-size: .72rem; font-weight: 900; letter-spacing: .16em; }
+.competition-hero-panel h2 { position: relative; margin: 100px 0 48px; font-size: 2.3rem; line-height: 1.03; color: #fff; }
+.competition-focus-row { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-top: 1px solid rgba(255,255,255,.12); color: var(--text-secondary); }
+.competition-focus-row span { color: var(--competition-orange); font-weight: 900; }
+.competition-focus-row strong { color: #fff; font-size: .9rem; }
+.competition-section { padding: 100px 0; }
+.competition-section-heading { display: flex; justify-content: space-between; gap: 40px; align-items: end; margin-bottom: 38px; }
+.competition-section-heading h2 { font-size: clamp(2.1rem, 4vw, 3.4rem); margin: 12px 0 0; color: #fff; }
+.competition-section-heading > p { max-width: 420px; color: var(--text-secondary); line-height: 1.6; }
+.competition-toolbar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; padding: 16px; border: 1px solid var(--border-subtle); background: rgba(255,255,255,.025); }
+.competition-search { flex: 1 1 280px; min-width: 220px; display: flex; align-items: center; gap: 10px; padding: 0 14px; background: rgba(0,0,0,.28); border: 1px solid var(--border-subtle); }
+.competition-search span { color: var(--competition-lime); font-size: 1.4rem; }
+.competition-search input { width: 100%; padding: 13px 0; border: 0; outline: 0; background: transparent; color: #fff; }
+.competition-toolbar select { min-width: 170px; padding: 13px 12px; border: 1px solid var(--border-subtle); background: #131a20; color: #fff; font: inherit; }
+.competition-results-meta { display: flex; justify-content: space-between; align-items: center; padding: 22px 0 16px; color: var(--text-muted); font-size: .84rem; }
+.text-button { border: 0; background: transparent; color: var(--competition-lime); cursor: pointer; font-weight: 700; }
+.competition-page-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; }
+.competition-page-card { background: var(--competition-panel); border: 1px solid var(--border-subtle); transition: transform .25s ease, border-color .25s ease; }
+.competition-page-card:hover { transform: translateY(-7px); border-color: rgba(212,255,0,.5); }
+.competition-page-card-top { display: flex; justify-content: space-between; gap: 10px; padding: 15px 17px; border-bottom: 1px solid var(--border-subtle); color: var(--competition-lime); font-size: .68rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.competition-page-card-top strong { color: var(--competition-orange); }
+.competition-page-card-body { padding: 22px; }
+.competition-page-location { color: var(--competition-lime); font-size: .76rem; font-weight: 700; }
+.competition-page-card h3 { color: #fff; font-size: 1.45rem; line-height: 1.12; margin: 8px 0 17px; }
+.competition-page-meta { display: grid; gap: 8px; color: var(--text-secondary); font-size: .82rem; }
+.competition-page-federation { color: var(--text-muted); font-size: .78rem; margin: 17px 0 8px; }
+.competition-page-categories { min-height: 48px; color: var(--text-secondary); font-size: .82rem; line-height: 1.5; margin-bottom: 20px; }
+.competition-page-categories b { color: #fff; }
+.competition-empty { grid-column: 1 / -1; text-align: center; padding: 80px 20px; border: 1px dashed var(--border-subtle); color: var(--text-secondary); }
+.competition-empty h3 { color: #fff; margin-bottom: 8px; }
+.competition-process { padding: 100px 0; background: #0d1217; }
+.competition-section-heading.compact { margin-bottom: 30px; }
+.competition-process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-subtle); }
+.competition-process-grid article { padding: 32px; background: #0d1217; }
+.competition-process-grid article > span { color: var(--competition-orange); font-weight: 900; }
+.competition-process-grid h3 { color: #fff; margin: 28px 0 8px; }
+.competition-process-grid p { color: var(--text-secondary); line-height: 1.6; }
+.competition-note { padding: 48px 0; background: linear-gradient(90deg, rgba(212,255,0,.12), rgba(255,112,67,.1)); border-top: 1px solid rgba(212,255,0,.2); border-bottom: 1px solid rgba(212,255,0,.2); }
+.competition-note-inner { display: flex; justify-content: space-between; gap: 40px; align-items: center; }
+.competition-note h2 { color: #fff; margin-top: 12px; }
+.competition-note p { max-width: 620px; color: var(--text-secondary); line-height: 1.7; }
+.competition-footer { padding-top: 25px; }
+.competition-footer a { color: var(--competition-lime); }
+@keyframes competition-rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 760px) { .competition-nav-links { display: none; } .competition-hero-grid { grid-template-columns: 1fr; gap: 38px; } .competition-hero { padding: 110px 0 70px; } .competition-hero-panel { min-height: 330px; } .competition-section-heading, .competition-note-inner { align-items: flex-start; flex-direction: column; } .competition-process-grid { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .competition-hero h1 { font-size: 3.4rem; } .competition-hero-stats { gap: 18px; flex-wrap: wrap; } .competition-toolbar select { width: 100%; } .competition-results-meta { align-items: flex-start; flex-direction: column; gap: 12px; } }
