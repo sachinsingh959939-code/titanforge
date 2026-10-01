@@ -1,0 +1,10 @@
+{
+  "mongo_uri": "mongodb://localhost:27017/",
+  "database_name": "titan_forge_gym",
+  "port": 8000,
+  "admin_email": "sachinkumar959939@gmail.com",
+  "smtp_user": "sachinkumar959939@gmail.com",
+  "smtp_app_password": "",
+  "smtp_enabled": true,
+  "comment": "Use MongoDB Atlas URI here if needed: mongodb+srv://sachinsingh959939_db_user:<db_password>@cluster0.mox1xtm.mongodb.net/?appName=Cluster0"
+}

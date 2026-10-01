@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find Titan Forge gyms near you across Delhi NCR, Faridabad, Noida, Gurgaon and Mumbai.">
+  <title>TITAN FORGE | Gym Near You</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/gym-near-you.css">
+</head>
+<body class="gym-near-page">
+  <header class="navbar gym-near-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo" aria-label="Titan Forge home">
+        <div class="logo-badge">⚡</div>
+        TITAN<span>FORGE</span>
+      </a>
+      <nav class="gym-near-nav-links" aria-label="Gym finder navigation">
+        <a href="#finder">Find a branch</a>
+        <a href="#map-view">Map view</a>
+        <a href="#how-it-works">How it works</a>
+      </nav>
+      <a href="index.html" class="btn btn-secondary btn-sm">Back to Gym</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="gym-near-hero" id="finder">
+      <div class="container gym-near-hero-grid">
+        <div class="gym-near-hero-copy">
+          <span class="section-tag">📍 Gym Near You</span>
+          <h1>Find your training ground.<br><span>Start close to home.</span></h1>
+          <p>Explore verified Titan Forge branches with live crowd snapshots, transparent membership pricing, coach credentials and direct directions.</p>
+          <div class="gym-near-hero-actions">
+            <a href="#branch-results" class="btn btn-primary">Explore Branches ↓</a>
+            <a href="index.html#lead-section" class="btn btn-secondary">Claim a Free Pass</a>
+          </div>
+          <div class="gym-near-stats">
+            <div><strong id="gym-near-count">0</strong><span>verified branches</span></div>
+            <div><strong>24/7</strong><span>VIP access options</span></div>
+            <div><strong>Delhi NCR</strong><span>featured hubs</span></div>
+          </div>
+        </div>
+        <div class="gym-near-hero-panel" aria-label="Gym finder highlights">
+          <span class="panel-kicker">BRANCH FINDER</span>
+          <h2>Choose a branch that fits your life.</h2>
+          <div class="gym-near-focus-row"><span>01</span><strong>Filter by state or city</strong></div>
+          <div class="gym-near-focus-row"><span>02</span><strong>Compare crowd and pricing</strong></div>
+          <div class="gym-near-focus-row"><span>03</span><strong>Meet the local team</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gym-near-section gym-near-finder-section" id="branch-results">
+      <div class="container">
+        <div class="gym-near-section-heading">
+          <div><span class="section-tag">The Branch Finder</span><h2>Choose your <span>nearest hub</span></h2></div>
+          <p>Start with our featured Delhi and Faridabad hubs, or search the full network by state, district or landmark.</p>
+        </div>
+
+        <div class="locator-spotlight-bar">
+          <div class="spotlight-badge-title">⚡ Quick Spotlight:</div>
+          <div class="spotlight-chips" id="locator-quick-chips">
+            <button class="spotlight-chip active" data-filter-type="highlighted" type="button"><span class="pulse-chip-dot"></span> 🔥 Featured Hubs</button>
+            <button class="spotlight-chip" data-filter-type="district" data-state="Haryana" data-district="Faridabad" type="button">🔥 Faridabad (35+ Hubs)</button>
+            <button class="spotlight-chip" data-filter-type="state" data-state="Delhi NCR" type="button">⭐ Delhi NCR</button>
+            <button class="spotlight-chip" data-filter-type="district" data-state="Uttar Pradesh" data-district="Noida" type="button">🏢 Noida Hubs</button>
+            <button class="spotlight-chip" data-filter-type="all" type="button">🌐 All Locations</button>
+          </div>
+        </div>
+
+        <div class="locator-controls-card">
+          <div class="locator-controls-grid">
+            <div class="locator-control-group"><label for="locator-state-select"><span class="label-icon">🏛️</span> Filter by State</label><div class="select-wrapper"><select id="locator-state-select" class="locator-select"><option value="All">All States</option><option value="Delhi NCR" selected>⭐ Delhi NCR</option><option value="Haryana">🔥 Haryana</option><option value="Uttar Pradesh">Uttar Pradesh</option><option value="Maharashtra">Maharashtra</option></select></div></div>
+            <div class="locator-control-group"><label for="locator-district-select"><span class="label-icon">📍</span> District / City</label><div class="select-wrapper"><select id="locator-district-select" class="locator-select"><option value="All">All Districts</option></select></div></div>
+            <div class="locator-control-group locator-search-group"><label for="locator-search-input"><span class="label-icon">🔍</span> Search locality or landmark</label><div class="search-input-wrapper"><input type="text" id="locator-search-input" class="locator-input" placeholder="e.g. GK-2, CP, Sector 15 Faridabad"><button class="clear-search-btn" id="locator-clear-search" style="display:none" title="Clear search" type="button">✕</button></div></div>
+          </div>
+          <div class="locator-status-bar"><div class="status-count" id="locator-results-count">Loading verified branches...</div><div class="status-legend"><span class="legend-item"><span class="legend-dot dot-green"></span> Low Crowd</span><span class="legend-item"><span class="legend-dot dot-orange"></span> Moderate</span><span class="legend-item"><span class="legend-dot dot-red"></span> Peak Rush</span></div></div>
+        </div>
+
+        <div class="locator-map-layout" id="map-view">
+          <div class="locator-map-panel" id="locator-map-panel"><div class="locator-map-heading"><div><span class="section-tag">Live Branch Map</span><h3 id="locator-map-title">Select a branch to view it on the map</h3></div><a id="locator-map-link" class="btn btn-secondary btn-sm" href="#" target="_blank" rel="noopener">Open in Maps</a></div><iframe id="locator-map-frame" title="Titan Forge gym branch map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+          <div class="gym-cards-grid" id="gym-locator-grid"><div class="locator-empty-state"><h3>Loading branches...</h3></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gym-near-process" id="how-it-works">
+      <div class="container"><div class="gym-near-section-heading compact"><div><span class="section-tag">From search to first session</span><h2>Pick a place that makes <span>consistency easier</span></h2></div></div><div class="process-grid"><article><span>01</span><h3>Compare nearby hubs</h3><p>Use city, district and landmark filters to narrow down your most practical branch.</p></article><article><span>02</span><h3>Check the real details</h3><p>Review pricing, open hours, crowd levels, owners and certified trainers before visiting.</p></article><article><span>03</span><h3>Take the next step</h3><p>Open directions, call the branch team or claim your free three-day pass.</p></article></div></div>
+    </section>
+
+    <section class="gym-near-banner"><div class="container gym-near-banner-inner"><div><span class="section-tag">Your closest start line</span><h2>Good training starts with showing up.</h2></div><a href="index.html#lead-section" class="btn btn-primary">Claim Free Pass ⚡</a></div></section>
+  </main>
+
+  <div class="modal-overlay" id="gym-details-modal"><div class="modal-dialog gym-details-dialog"><button class="modal-close-btn" onclick="closeGymDetailsModal()" aria-label="Close gym details">✕</button><div id="gym-details-modal-content"></div></div></div>
+  <div class="toast-container" id="toast-container"></div>
+  <footer class="footer gym-near-footer"><div class="container"><div class="footer-bottom"><div>© 2026 TITAN FORGE ATHLETICS & PERFORMANCE.</div><a href="index.html">Back to main gym website ↑</a></div></div></footer>
+
+  <script src="js/products-data.js"></script>
+  <script src="js/faridabad-branches.js?v=20260907"></script>
+  <script src="js/app.js?v=20260907"></script>
+  <script src="js/gym-near-you.js?v=20260907"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Titan Forge Celebrity Diet Lab - celebrity-inspired meal plans, macros and practical food sourcing guides.">
+  <title>TITAN FORGE | Celebrity Diet Lab</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/diet-page.css">
+</head>
+<body class="diet-page">
+  <header class="navbar diet-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo" aria-label="Titan Forge home">
+        <div class="logo-badge">⚡</div>
+        TITAN<span>FORGE</span>
+      </a>
+      <nav class="diet-nav-links" aria-label="Diet navigation">
+        <a href="#plans">Plans</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#nutrition-note">Nutrition note</a>
+      </nav>
+      <a href="index.html" class="btn btn-secondary btn-sm">Back to Gym</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="diet-hero">
+      <div class="container diet-hero-grid">
+        <div class="diet-hero-copy">
+          <span class="section-tag">🥗 Celebrity Diet Lab</span>
+          <h1>Eat like a plan.<br><span>Train like a champion.</span></h1>
+          <p>Explore celebrity-inspired routines with complete meals, macros, practical Indian swaps and budget-friendly sourcing ideas.</p>
+          <div class="diet-hero-actions">
+            <a href="#plans" class="btn btn-primary">Explore Diet Plans ↓</a>
+            <a href="index.html#calculators" class="btn btn-secondary">Calculate My Macros</a>
+          </div>
+          <div class="diet-hero-stats">
+            <div><strong id="plan-count">0</strong><span>featured plans</span></div>
+            <div><strong>24h</strong><span>meal schedules</span></div>
+            <div><strong>2</strong><span>budget paths</span></div>
+          </div>
+        </div>
+        <div class="diet-hero-panel" aria-label="Diet lab highlights">
+          <div class="hero-panel-glow"></div>
+          <span class="panel-kicker">TODAY'S FOCUS</span>
+          <h2>Build the routine.<br>Own the result.</h2>
+          <div class="focus-row"><span>01</span><strong>Pick a physique goal</strong></div>
+          <div class="focus-row"><span>02</span><strong>Study the full day plan</strong></div>
+          <div class="focus-row"><span>03</span><strong>Swap meals for your budget</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="diet-section swap-agent-section" id="food-swap-agent">
+      <div class="container">
+        <div class="diet-section-heading">
+          <div>
+            <span class="section-tag">⚡ Featured Smart Tool</span>
+            <h2>Find a <span>smart alternative</span> to expensive food</h2>
+          </div>
+          <p>Enter a food and your daily budget. Get a practical Indian replacement, estimated savings and a comparable nutrition profile.</p>
+        </div>
+        <div class="swap-agent-layout">
+          <form class="swap-agent-form" id="food-swap-form">
+            <div class="agent-input-label">Which food would you like to replace?</div>
+            <div class="agent-search-wrap">
+              <span>⌕</span>
+              <input id="swap-food-input" list="swap-food-list" type="text" placeholder="e.g. whey protein, salmon, avocado" required>
+            </div>
+            <datalist id="swap-food-list"></datalist>
+            <div class="swap-agent-fields">
+              <label>Daily food budget
+                <select id="swap-budget">
+                  <option value="student">Student / tight budget</option>
+                  <option value="balanced" selected>Balanced budget</option>
+                  <option value="premium">Premium but economical</option>
+                </select>
+              </label>
+              <label>Food preference
+                <select id="swap-preference">
+                  <option value="any" selected>Any option</option>
+                  <option value="vegetarian">Vegetarian</option>
+                  <option value="vegan">Vegan</option>
+                  <option value="non-vegetarian">Non-vegetarian</option>
+                </select>
+              </label>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Find My Smart Alternate ⚡</button>
+            <p class="agent-disclaimer">Estimates only. Prices may vary by city and brand.</p>
+          </form>
+          <div class="swap-agent-result" id="food-swap-result" aria-live="polite">
+            <div class="agent-result-empty"><span>✦</span><h3>Your smart swap will appear here</h3><p>Try “whey protein”, “salmon”, “avocado” or “Greek yogurt”.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="diet-section" id="plans">
+      <div class="container">
+        <div class="diet-section-heading">
+          <div>
+            <span class="section-tag">The Plan Library</span>
+            <h2>Find your <span>fuel blueprint</span></h2>
+          </div>
+          <p>These are educational, celebrity-inspired examples. Use the filters to find a starting point that matches your target.</p>
+        </div>
+        <div class="diet-toolbar">
+          <label class="diet-search"><span>⌕</span><input id="diet-search" type="search" placeholder="Search athlete, goal or diet style..."></label>
+          <div class="diet-filters" id="diet-filters" role="group" aria-label="Filter diet plans"></div>
+        </div>
+        <div class="diet-results-meta"><span id="diet-results-count">Loading plans...</span><button class="text-button" id="clear-diet-filter" type="button">Clear filters</button></div>
+        <div class="diet-plans-grid" id="diet-plans-grid"></div>
+      </div>
+    </section>
+
+    <section class="diet-section diet-process" id="how-it-works">
+      <div class="container">
+        <div class="diet-section-heading compact"><div><span class="section-tag">Use the lab wisely</span><h2>From inspiration to <span>your plate</span></h2></div></div>
+        <div class="process-grid">
+          <article><span>01</span><h3>Choose a direction</h3><p>Start with the body-composition goal and training style that feels closest to yours.</p></article>
+          <article><span>02</span><h3>Open the full day</h3><p>Review meal timing, portions, macros and the foods behind the routine.</p></article>
+          <article><span>03</span><h3>Make it realistic</h3><p>Use the student or professional sourcing guide to build a plan you can actually repeat.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="diet-note" id="nutrition-note">
+      <div class="container diet-note-inner">
+        <div><span class="section-tag">Important</span><h2>Inspired does not mean identical.</h2></div>
+        <p>Celebrity routines can involve coaches, medical supervision and very different training loads. Treat these plans as education, adjust for your health and speak with a qualified dietitian before making major changes.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="diet-modal" id="diet-modal" aria-hidden="true">
+    <div class="diet-modal-backdrop" data-close-diet-modal></div>
+    <article class="diet-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="diet-modal-title">
+      <button class="diet-modal-close" type="button" data-close-diet-modal aria-label="Close diet plan">✕</button>
+      <div id="diet-modal-content"></div>
+    </article>
+  </div>
+
+  <!-- Dedicated Cooking Process Video Modal -->
+  <div class="diet-modal" id="cooking-video-modal" aria-hidden="true" style="z-index: 1200;">
+    <div class="diet-modal-backdrop" data-close-cooking-modal></div>
+    <article class="diet-modal-dialog" style="max-width: 780px; padding: 24px;" role="dialog" aria-modal="true" aria-labelledby="cooking-modal-title">
+      <button class="diet-modal-close" type="button" data-close-cooking-modal aria-label="Close cooking video">✕</button>
+      <div id="cooking-video-modal-content"></div>
+    </article>
+  </div>
+
+  <footer class="footer diet-footer"><div class="container"><div class="footer-bottom"><div>© 2026 TITAN FORGE ATHLETICS & PERFORMANCE.</div><a href="index.html">Back to main gym website ↑</a></div></div></footer>
+
+  <script src="js/products-data.js"></script>
+  <script src="js/celebrity-diet-catalog.js"></script>
+  <script src="js/diet-page.js"></script>
+</body>
+</html>

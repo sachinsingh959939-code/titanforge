@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TITAN FORGE | Ultra-Modern Gym, Fitness Store & Performance Coaching</title>
+  <meta name="description" content="Titan Forge is an elite fitness sanctuary combining heavy iron hypertrophy, functional conditioning, boxing, recovery spa, performance supplements, and master coaching.">
+  <meta name="keywords" content="gym, fitness club, personal trainer, bodybuilding, supplements, crossfit, boxing, workout schedule, BMI calculator">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Razorpay Official Checkout SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <!-- Favicon Emoji -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%200%22%20100%22%20100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- ==================== HEADER & NAVBAR ==================== -->
+  <header class="navbar" id="main-navbar">
+    <div class="container navbar-inner navbar-inner-main">
+      <div class="navbar-brand-row">
+        <a href="#home" class="logo">
+          <div class="logo-badge">⚡</div>
+          TITAN<span>FORGE</span>
+        </a>
+
+        <div class="nav-actions">
+          <!-- Shopping Cart Trigger Button -->
+          <button class="cart-btn" id="open-cart-btn" aria-label="Open Shopping Bag">
+            🛒
+            <span class="cart-badge" id="cart-count-badge">0</span>
+          </button>
+
+          <a href="#lead-section" class="btn btn-primary btn-sm">
+            Claim Free Pass
+          </a>
+
+          <a href="http://localhost:8000/api/auth/google" class="btn btn-secondary btn-sm" id="google-login-btn">
+            Continue with Google
+          </a>
+
+          <button class="btn btn-secondary btn-sm" id="google-logout-btn" type="button" style="display:none;">
+            Sign out
+          </button>
+
+          <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">
+            ☰
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs Container -->
+      <nav class="navbar-tabs-container">
+        <ul class="nav-links" id="nav-links">
+          <!-- Row 1: Special Feature Portals (6 Upar) -->
+          <div class="nav-tabs-row nav-tabs-top">
+            <li><a href="ai-workout-vision.html" class="nav-link highlighted-nav-link" style="border-color:var(--accent-volt); background:rgba(212,255,0,0.12); color:#fff;">🤖 AI Posture Coach <span class="hot-pill" style="background:linear-gradient(135deg,#d4ff00,#00f0ff); color:#000;">LIVE AI</span></a></li>
+            <li><a href="gym-near-you.html" class="nav-link highlighted-nav-link-locator">📍 Gym Near You <span class="hot-pill" style="background:var(--accent-volt); color:#000;">MAP</span></a></li>
+            <li><a href="competitions.html" class="nav-link highlighted-nav-link">🏆 Competitions <span class="hot-pill">NEW</span></a></li>
+            <li><a href="diet.html" class="nav-link highlighted-nav-link">🥗 Celebrity Diet Lab <span class="hot-pill">HOT</span></a></li>
+            <li><a href="video-library.html" class="nav-link highlighted-nav-link">🎥 Video Library <span class="hot-pill">NEW</span></a></li>
+            <li><a href="#pricing" class="nav-link highlighted-nav-link india-pass-nav-link">🇮🇳 India Pass <span class="hot-pill">ALL INDIA</span></a></li>
+          </div>
+
+          <!-- Row 2: Main Gym Sections (Uske Neeche) -->
+          <div class="nav-tabs-row nav-tabs-bottom">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#programs" class="nav-link">Programs</a></li>
+            <li><a href="#schedule" class="nav-link">Schedule</a></li>
+            <li><a href="#calculators" class="nav-link">Fitness Lab</a></li>
+            <li><a href="#store" class="nav-link">Store</a></li>
+            <li><a href="#trainers" class="nav-link">Trainers</a></li>
+            <li><a href="#pricing" class="nav-link">Memberships</a></li>
+            <li><a href="#lead-section" class="nav-link">Free Pass</a></li>
+          </div>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <video class="hero-bg-video" autoplay muted loop playsinline poster="assets/hero-bg.jpg" aria-hidden="true">
+        <source src="videos/homepage.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <div class="hero-pill">
+        <span class="pulse-dot"></span>
+        <span class="hero-pill-text">Premier Athletic Facility & High-Performance Club</span>
+      </div>
+
+      <h1 class="hero-title">
+        FORGE YOUR LEGACY. <br>
+        <span class="text-gradient">BREAK YOUR <span class="hero-word" id="hero-word">LIMITS.</span></span>
+      </h1>
+
+      <p class="hero-desc">
+        Welcome to Titan Forge—the ultimate convergence of raw strength, functional conditioning, combat sports, and sports science. Built for those who refuse mediocrity.
+      </p>
+
+      <div class="hero-actions">
+        <a href="ai-workout-vision.html" class="btn btn-primary" style="background:linear-gradient(135deg, #d4ff00, #00f0ff); color:#080b0f; font-weight:900; box-shadow: 0 0 30px rgba(212, 255, 0, 0.45);">
+          🤖 AI Live Camera Posture Coach ⚡
+        </a>
+        <a href="gym-near-you.html" class="btn btn-secondary" style="border-color:var(--accent-volt); color:var(--accent-volt);">
+          📍 Find Gym Near You (Delhi & Faridabad)
+        </a>
+        <a href="diet.html" class="btn btn-secondary">
+          🥗 Celebrity Diet Lab 🔥
+        </a>
+        <a href="video-library.html" class="btn btn-secondary">
+          🎥 Video Library
+        </a>
+        <a href="#store" class="btn btn-secondary">
+          🛒 Shop Supplements
+        </a>
+      </div>
+
+      <div class="hero-stats-row">
+        <div class="hero-stat-item">
+          <div class="stat-num">5,000<span>+</span></div>
+          <div class="stat-label">Active Members</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="stat-num">45<span>+</span></div>
+          <div class="stat-label">Master Coaches</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="stat-num">120<span>+</span></div>
+          <div class="stat-label">Weekly Classes</div>
+        </div>
+      </div>
+
+      <div class="hero-marquee" aria-label="Titan Forge training disciplines">
+        <div class="hero-marquee-track">
+          <span>STRENGTH</span><i>✦</i><span>CONDITIONING</span><i>✦</i><span>BOXING</span><i>✦</i><span>RECOVERY</span><i>✦</i><span>SPORTS SCIENCE</span><i>✦</i>
+          <span>STRENGTH</span><i>✦</i><span>CONDITIONING</span><i>✦</i><span>BOXING</span><i>✦</i><span>RECOVERY</span><i>✦</i><span>SPORTS SCIENCE</span><i>✦</i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured-smart-module">
+    <div class="container">
+      <div class="featured-smart-card">
+        <div class="featured-smart-copy">
+          <span class="section-tag">⚡ Featured Smart Tool</span>
+          <h2>Find a <span>smart alternative</span> to expensive food.</h2>
+          <p>Discover budget-friendly Indian replacements for whey protein, salmon, avocado and other imported nutrition items in seconds.</p>
+          <div class="featured-smart-actions">
+            <a href="diet.html#food-swap-agent" class="btn btn-primary">Open Smart Swap Tool</a>
+            <a href="diet.html" class="btn btn-secondary">View Diet Lab</a>
+          </div>
+        </div>
+        <div class="featured-smart-stats">
+          <div>
+            <strong>₹300+</strong>
+            <span>Avg Savings</span>
+          </div>
+          <div>
+            <strong>9+</strong>
+            <span>Food Matches</span>
+          </div>
+          <div>
+            <strong>Instant</strong>
+            <span>Nutrition Swap</span>
+          </div>
+        </div>
+        <div class="featured-smart-note">Save money without compromising your protein target.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== VIP PASS / LEAD GENERATION SECTION ==================== -->
+  <section class="section" id="lead-section" style="background: radial-gradient(circle at 80% 50%, rgba(212, 255, 0, 0.05) 0%, transparent 50%), #0a0d14;">
+    <div class="container">
+      <div class="lead-section-grid">
+        <div class="lead-info">
+          <span class="section-tag">Claim Your Free Pass</span>
+          <h2>Experience The <span>Titan Forge</span> Difference Free For 3 Days</h2>
+          <p style="color: var(--text-secondary); font-size: 1.05rem;">
+            No obligations, no hard sales pitches. Step inside, test out our calibrated rogue bars, join our high-intensity boxing classes, and experience our cryo-spa recovery.
+          </p>
+
+          <ul class="lead-perks">
+            <li class="lead-perk-item">
+              <div class="lead-perk-icon">✓</div>
+              <div>
+                <strong style="color: #fff;">Full Facility Access</strong>
+                <p style="color: var(--text-secondary); font-size: 0.88rem;">Complete freedom across Heavy Iron, CrossFit turf, and combat studios.</p>
+              </div>
+            </li>
+            <li class="lead-perk-item">
+              <div class="lead-perk-icon">✓</div>
+              <div>
+                <strong style="color: #fff;">Complimentary Body Composition Scan</strong>
+                <p style="color: var(--text-secondary); font-size: 0.88rem;">Clinical InBody 770 scan measuring muscle mass, visceral fat, and metabolic rate.</p>
+              </div>
+            </li>
+            <li class="lead-perk-item">
+              <div class="lead-perk-icon">✓</div>
+              <div>
+                <strong style="color: #fff;">Free Master Coach Consultation</strong>
+                <p style="color: var(--text-secondary); font-size: 0.88rem;">30-minute tailored movement screening and roadmap planning with a senior trainer.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card-glass">
+          <h3 style="font-size: 1.4rem; margin-bottom: 8px;">Claim Your 3-Day VIP Trial</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 24px;">
+            Fill out the quick form below to receive your digital pass instantly.
+          </p>
+
+          <form id="vip-lead-form">
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label for="lead-name">Your Full Name</label>
+              <input type="text" id="lead-name" class="form-control" placeholder="e.g. Rahul Sharma" required>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label for="lead-email">Email Address</label>
+              <input type="email" id="lead-email" class="form-control" placeholder="rahul@example.com" required>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label for="lead-phone">Phone Number / WhatsApp</label>
+              <input type="tel" id="lead-phone" class="form-control" placeholder="+91 98765 43210" required>
+            </div>
+
+            <div class="calc-form-grid" style="margin-bottom: 24px;">
+              <div class="form-group">
+                <label for="lead-branch">Preferred Branch</label>
+                <select id="lead-branch" class="form-control">
+                  <option value="titan-delhi-south-gk">⭐ South Delhi Flagship (GK-2)</option>
+                  <option value="titan-faridabad-sec15">🔥 Faridabad Sector 15 (Mega Arena)</option>
+                  <option value="titan-faridabad-greenfield">🔥 Faridabad Green Field (Spartan Hub)</option>
+                  <option value="titan-delhi-central-cp">⭐ Central Delhi (Connaught Place)</option>
+                  <option value="titan-delhi-west-rajouri">⭐ West Delhi (Rajouri Garden)</option>
+                  <option value="titan-haryana-gurgaon-cybercity">Gurgaon DLF CyberCity</option>
+                  <option value="titan-up-noida-sec62">Noida Sector 62</option>
+                  <option value="titan-mumbai-bandra">Mumbai Bandra West</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="lead-goal">Primary Fitness Goal</label>
+                <select id="lead-goal" class="form-control">
+                  <option value="muscle">Hypertrophy & Muscle Gain</option>
+                  <option value="fatloss">Fat Loss & Conditioning</option>
+                  <option value="strength">Powerlifting & Max Strength</option>
+                  <option value="boxing">Combat Sports & Striking</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+              Send My 3-Day VIP Pass ⚡
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FITNESS GOAL FINDER ==================== -->
+  <section class="section goal-finder-section" id="goal-finder">
+    <div class="container">
+      <div class="goal-finder-layout">
+        <div class="goal-finder-copy">
+          <span class="section-tag">⚡ Find Your Starting Point</span>
+          <h2 class="section-title">Your goal. Your <span>next move.</span></h2>
+          <p class="section-subtitle">Choose one target and get a simple starting route for training, food and coaching.</p>
+        </div>
+        <div class="goal-finder-card">
+          <div class="goal-options" role="group" aria-label="Choose your fitness goal">
+            <button class="goal-option active" type="button" data-goal="muscle"><strong>💪 Muscle Gain</strong><span>Build size & power</span></button>
+            <button class="goal-option" type="button" data-goal="fatloss"><strong>🔥 Fat Loss</strong><span>Move lighter & fitter</span></button>
+            <button class="goal-option" type="button" data-goal="strength"><strong>🏋️ Strength</strong><span>Lift with confidence</span></button>
+            <button class="goal-option" type="button" data-goal="energy"><strong>⚡ Daily Energy</strong><span>Feel better every day</span></button>
+          </div>
+          <div class="goal-result" id="goal-result" aria-live="polite">
+            <span class="goal-result-kicker">Recommended route</span>
+            <h3 id="goal-result-title">Muscle Gain Starter</h3>
+            <p id="goal-result-copy">Start with strength training 3–4 days a week and a protein-first budget meal plan.</p>
+            <div class="goal-result-actions"><a href="#programs" class="btn btn-primary btn-sm" id="goal-program-link">See Strength Programs</a><a href="diet.html" class="text-link">Open Diet Lab →</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== GYM LOCATOR SECTION (NEAR YOU) ==================== -->
+  <section class="section gym-locator-section" id="gym-locator">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag section-tag-highlight">📍 Real-Time Gym Locator</span>
+        <h2 class="section-title">Find Gyms Near You — <span>State & District Finder</span></h2>
+        <p class="section-subtitle">
+          Discover top Titan Forge clubs across <strong>Delhi NCR & Faridabad (Highlighted)</strong> with transparent price lists, coach & owner credentials with years of experience, and live slot capacity meters.
+        </p>
+      </div>
+
+      <!-- Quick Spotlight Selector Tabs -->
+      <div class="locator-spotlight-bar">
+        <div class="spotlight-badge-title">⚡ Quick Spotlight:</div>
+        <div class="spotlight-chips" id="locator-quick-chips">
+          <button class="spotlight-chip active" data-filter-type="highlighted">
+            <span class="pulse-chip-dot"></span> 🔥 Delhi & Faridabad Hubs (Featured)
+          </button>
+          <button class="spotlight-chip" data-filter-type="state" data-state="Delhi NCR">
+            ⭐ Delhi NCR (South, Central, West)
+          </button>
+          <button class="spotlight-chip" data-filter-type="district" data-state="Haryana" data-district="Faridabad">
+            🔥 Faridabad Clubs (Sec 15 & Green Field)
+          </button>
+          <button class="spotlight-chip" data-filter-type="all">
+            🌐 All States & Cities
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Search & Filter Control Bar -->
+      <div class="locator-controls-card">
+        <div class="locator-controls-grid">
+          <!-- State Filter -->
+          <div class="locator-control-group">
+            <label for="locator-state-select">
+              <span class="label-icon">🏛️</span> Filter by State
+            </label>
+            <div class="select-wrapper">
+              <select id="locator-state-select" class="locator-select">
+                <option value="All">All States (Delhi, Haryana, UP, Maharashtra)</option>
+                <option value="Delhi NCR" selected>⭐ Delhi NCR (Highlighted)</option>
+                <option value="Haryana">🔥 Haryana (Faridabad Highlighted)</option>
+                <option value="Uttar Pradesh">Uttar Pradesh (Noida)</option>
+                <option value="Maharashtra">Maharashtra (Mumbai)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- District Filter -->
+          <div class="locator-control-group">
+            <label for="locator-district-select">
+              <span class="label-icon">📍</span> Filter by District / City
+            </label>
+            <div class="select-wrapper">
+              <select id="locator-district-select" class="locator-select">
+                <option value="All">All Districts</option>
+                <!-- Populated dynamically based on state -->
+              </select>
+            </div>
+          </div>
+
+          <!-- Search by keyword / locality -->
+          <div class="locator-control-group locator-search-group">
+            <label for="locator-search-input">
+              <span class="label-icon">🔍</span> Search Locality or Landmark
+            </label>
+            <div class="search-input-wrapper">
+              <input type="text" id="locator-search-input" class="locator-input" placeholder="e.g. GK-2, CP, Sector 15 Faridabad, Surajkund...">
+              <button class="clear-search-btn" id="locator-clear-search" style="display:none;" title="Clear">✕</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Summary Bar -->
+        <div class="locator-status-bar">
+          <div class="status-count" id="locator-results-count">
+            Showing <strong>4</strong> verified gym branches
+          </div>
+          <div class="status-legend">
+            <span class="legend-item"><span class="legend-dot dot-green"></span> Low Crowd (&lt;40%)</span>
+            <span class="legend-item"><span class="legend-dot dot-orange"></span> Moderate (40-80%)</span>
+            <span class="legend-item"><span class="legend-dot dot-red"></span> Peak Rush (&gt;80%)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="locator-map-layout">
+        <div class="locator-map-panel" id="locator-map-panel">
+          <div class="locator-map-heading">
+            <div>
+              <span class="section-tag">Live Branch Map</span>
+              <h3 id="locator-map-title">Select a branch to view it on the map</h3>
+            </div>
+            <a id="locator-map-link" class="btn btn-secondary btn-sm" href="#" target="_blank" rel="noopener">Open in Maps</a>
+          </div>
+          <iframe id="locator-map-frame" title="Titan Forge gym branch map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+      <!-- Gym Cards Grid -->
+      <div class="gym-cards-grid" id="gym-locator-grid">
+        <!-- Dynamically rendered by app.js -->
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROGRAMS SECTION ==================== -->
+  <section class="section" id="programs">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Elite Training Disciplines</span>
+        <h2 class="section-title">Engineered For <span>Peak Human Output</span></h2>
+        <p class="section-subtitle">
+          Whether your ambition is maximum hypertrophy, functional endurance, or championship combat striking, we have the programming and coaches to take you there.
+        </p>
+      </div>
+
+      <div class="programs-grid" id="programs-grid-container">
+        <!-- Rendered dynamically from js/products-data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SCHEDULE & CLASS BOOKING SECTION ==================== -->
+  <section class="section" id="schedule" style="background: rgba(15, 19, 26, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Class Timetable</span>
+        <h2 class="section-title">Live Weekly <span>Workout Schedule</span></h2>
+        <p class="section-subtitle">
+          Pick your day, filter by discipline, and instantly reserve your spot in our small-group coached sessions.
+        </p>
+      </div>
+
+      <div class="schedule-controls">
+        <!-- Day Selector Pills -->
+        <div class="day-pills" id="schedule-days-container">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Category Filters -->
+        <div class="filter-pills">
+          <button class="filter-pill schedule-filter-pill active" data-cat="All">All Disciplines</button>
+          <button class="filter-pill schedule-filter-pill" data-cat="Strength">Heavy Strength</button>
+          <button class="filter-pill schedule-filter-pill" data-cat="Functional">Functional CrossFit</button>
+          <button class="filter-pill schedule-filter-pill" data-cat="Combat">Combat & Boxing</button>
+          <button class="filter-pill schedule-filter-pill" data-cat="Recovery">Recovery & Mobility</button>
+        </div>
+      </div>
+
+      <div class="schedule-grid" id="schedule-grid-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FITNESS LAB / CALCULATORS SECTION ==================== -->
+  <section class="section" id="calculators">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Sports Science Lab</span>
+        <h2 class="section-title">Interactive <span>Health & Macro Calculators</span></h2>
+        <p class="section-subtitle">
+          Precision data for precision results. Calculate your Body Mass Index or compute your exact daily calorie and macronutrient breakdown for fat loss or muscle gain.
+        </p>
+      </div>
+
+      <div class="calculators-box">
+        <!-- Tabs Header -->
+        <div class="calc-tabs">
+          <button class="calc-tab active" data-target="bmi-tab-content">
+            ⚖️ Body Mass Index (BMI)
+          </button>
+          <button class="calc-tab" data-target="macro-tab-content">
+            🥗 Daily Calories & Macro Target
+          </button>
+        </div>
+
+        <!-- TAB 1: BMI CALCULATOR -->
+        <div class="calc-content active" id="bmi-tab-content">
+          <form id="bmi-form">
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label for="bmi-unit">Measurement System</label>
+              <select id="bmi-unit" class="form-control">
+                <option value="metric">Metric (Centimeters & Kilograms)</option>
+                <option value="imperial">Imperial (Feet, Inches & Pounds)</option>
+              </select>
+            </div>
+
+            <!-- Metric Inputs -->
+            <div class="calc-form-grid" id="bmi-metric-fields">
+              <div class="form-group">
+                <label for="bmi-height-cm">Height (cm)</label>
+                <input type="number" id="bmi-height-cm" class="form-control" placeholder="e.g. 178" value="178" min="50" max="260">
+              </div>
+              <div class="form-group">
+                <label for="bmi-weight-kg">Weight (kg)</label>
+                <input type="number" id="bmi-weight-kg" class="form-control" placeholder="e.g. 78" value="78" min="20" max="300" step="0.5">
+              </div>
+            </div>
+
+            <!-- Imperial Inputs -->
+            <div class="calc-form-grid" id="bmi-imperial-fields" style="display: none;">
+              <div class="form-group">
+                <label for="bmi-height-ft">Height (Feet)</label>
+                <input type="number" id="bmi-height-ft" class="form-control" placeholder="5" min="2" max="8">
+              </div>
+              <div class="form-group">
+                <label for="bmi-height-in">Height (Inches)</label>
+                <input type="number" id="bmi-height-in" class="form-control" placeholder="10" min="0" max="11">
+              </div>
+              <div class="form-group">
+                <label for="bmi-weight-lbs">Weight (lbs)</label>
+                <input type="number" id="bmi-weight-lbs" class="form-control" placeholder="170" min="50" max="600">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+              Calculate BMI ⚡
+            </button>
+          </form>
+
+          <!-- Result Box -->
+          <div class="calc-result-box" id="bmi-result-box" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <div>
+                <span style="font-size: 0.9rem; color: var(--text-secondary);">Calculated BMI:</span>
+                <div style="font-size: 2.4rem; font-weight: 900; font-family: var(--font-display); color: #fff;" id="bmi-val">--</div>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 0.85rem; color: var(--text-muted);">Classification</span>
+                <div style="font-size: 1.3rem; font-weight: 800;" id="bmi-category">--</div>
+              </div>
+            </div>
+
+            <!-- Meter Bar -->
+            <div class="bmi-meter-bar">
+              <div class="bmi-pointer" id="bmi-pointer"></div>
+            </div>
+            <div class="bmi-labels">
+              <span>Underweight (&lt;18.5)</span>
+              <span>Optimal (18.5 - 24.9)</span>
+              <span>Overweight (25 - 29.9)</span>
+              <span>Obese (30+)</span>
+            </div>
+
+            <div id="bmi-healthy-range" style="font-size: 0.9rem; color: var(--text-secondary); text-align: center; margin-top: 10px;"></div>
+          </div>
+        </div>
+
+        <!-- TAB 2: MACROS CALCULATOR -->
+        <div class="calc-content" id="macro-tab-content">
+          <form id="macro-form">
+            <div class="calc-form-grid">
+              <div class="form-group">
+                <label for="macro-gender">Gender</label>
+                <select id="macro-gender" class="form-control">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="macro-age">Age (Years)</label>
+                <input type="number" id="macro-age" class="form-control" value="26" min="14" max="90" required>
+              </div>
+              <div class="form-group">
+                <label for="macro-weight">Weight (kg)</label>
+                <input type="number" id="macro-weight" class="form-control" value="75" min="30" max="250" required>
+              </div>
+              <div class="form-group">
+                <label for="macro-height">Height (cm)</label>
+                <input type="number" id="macro-height" class="form-control" value="175" min="100" max="230" required>
+              </div>
+            </div>
+
+            <div class="calc-form-grid">
+              <div class="form-group">
+                <label for="macro-activity">Activity Level</label>
+                <select id="macro-activity" class="form-control">
+                  <option value="1.2">Sedentary (Desk Job, little exercise)</option>
+                  <option value="1.375">Lightly Active (1-3 gym days/week)</option>
+                  <option value="1.55" selected>Moderately Active (3-5 intense gym days/week)</option>
+                  <option value="1.725">Very Active (6-7 hard workouts/week)</option>
+                  <option value="1.9">Elite Athlete / Heavy Physical Work</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="macro-goal">Fitness Target</label>
+                <select id="macro-goal" class="form-control">
+                  <option value="cut">Fat Loss & Shred (-500 kcal Deficit)</option>
+                  <option value="maintain">Body Recomposition / Maintenance</option>
+                  <option value="lean-gain" selected>Lean Muscle Growth (+300 kcal Surplus)</option>
+                  <option value="heavy-bulk">Maximum Hypertrophy Bulk (+600 kcal Surplus)</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+              Calculate Daily Calories & Macros ⚡
+            </button>
+          </form>
+
+          <!-- Macro Results -->
+          <div class="calc-result-box" id="macro-result-box" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <div>
+                <span style="font-size: 0.85rem; color: var(--text-secondary);">Target Daily Energy Intake:</span>
+                <div style="font-size: 2.2rem; font-weight: 900; font-family: var(--font-display); color: var(--accent-volt);" id="target-cals-val">-- kcal</div>
+              </div>
+              <div id="target-bmr-val" style="font-size: 0.85rem; color: var(--text-muted);"></div>
+            </div>
+
+            <div class="macro-breakdown-grid">
+              <div class="macro-box" style="border-top-color: #38bdf8;">
+                <div class="macro-val" id="macro-protein-val">--g</div>
+                <div class="macro-label">Protein (4 kcal/g)</div>
+              </div>
+              <div class="macro-box" style="border-top-color: #4ade80;">
+                <div class="macro-val" id="macro-carbs-val">--g</div>
+                <div class="macro-label">Carbohydrates (4 kcal/g)</div>
+              </div>
+              <div class="macro-box" style="border-top-color: #facc15;">
+                <div class="macro-val" id="macro-fats-val">--g</div>
+                <div class="macro-label">Fats (9 kcal/g)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CELEBRITY & INFLUENCER DIETS SECTION ==================== -->
+  <section class="section" id="celebrity-diets">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">🔥 Star Nutrition Vault</span>
+        <h2 class="section-title">Celebrity & Influencer <span>Full Day Diets</span></h2>
+        <p class="section-subtitle">
+          Discover what top icons like Virat Kohli, Hrithik Roshan, John Abraham, and Indian Fitness Creators eat all day—plus real sourcing hacks and budget shopping guides for <strong>College Students</strong> and <strong>Corporate Working Professionals</strong>!
+        </p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="store-categories" style="margin-bottom: 36px;">
+        <button class="store-cat-btn celeb-cat-btn active" data-cat="All">All Diets</button>
+        <button class="store-cat-btn celeb-cat-btn" data-cat="Athletes">Athletes (Virat Kohli)</button>
+        <button class="store-cat-btn celeb-cat-btn" data-cat="Bollywood">Bollywood (Hrithik & John)</button>
+        <button class="store-cat-btn celeb-cat-btn" data-cat="Hollywood">Hollywood (Chris Hemsworth)</button>
+        <button class="store-cat-btn celeb-cat-btn" data-cat="Indian Budget Friendly">🎓 College / PG Budget Plan</button>
+      </div>
+
+      <!-- Celebrity Diets Grid -->
+      <div class="celeb-slider-toolbar" aria-label="Celebrity diet slider controls">
+        <span>Swipe to explore the vault</span>
+        <div>
+          <button class="slider-arrow" type="button" data-slider-target="celebrity-diets-grid" data-slider-direction="prev" aria-label="Previous celebrity">←</button>
+          <button class="slider-arrow" type="button" data-slider-target="celebrity-diets-grid" data-slider-direction="next" aria-label="Next celebrity">→</button>
+        </div>
+      </div>
+      <div class="celeb-grid celeb-slider" id="celebrity-diets-grid">
+        <!-- Rendered dynamically from js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== E-COMMERCE STORE SECTION ==================== -->
+  <section class="section" id="store" style="background: rgba(15, 19, 26, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Titan Official Store</span>
+        <h2 class="section-title">Fuel Your Performance & <span>Rep The Brand</span></h2>
+        <p class="section-subtitle">
+          Lab-tested pure sports supplements, IPF-spec powerlifting gear, and heavy-duty athletic streetwear engineered for grueling sessions.
+        </p>
+      </div>
+
+      <!-- Store Category Selector -->
+      <div class="store-categories">
+        <button class="store-cat-btn active" data-cat="All">All Gear & Nutrition</button>
+        <button class="store-cat-btn" data-cat="Supplements">Supplements & Nutrition</button>
+        <button class="store-cat-btn" data-cat="Gear">Lifting Gear & Straps</button>
+        <button class="store-cat-btn" data-cat="Apparel">Athletic Apparel</button>
+        <button class="store-cat-btn" data-cat="Accessories">Accessories</button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="products-grid-container">
+        <!-- Rendered dynamically from js/store.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TRAINER SHOWCASE & PORTFOLIO SECTION ==================== -->
+  <section class="section" id="trainers">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Master Coaches</span>
+        <h2 class="section-title">Meet Your <span>Elite Mentors</span></h2>
+        <p class="section-subtitle">
+          No generic trainers. Our staff consists of certified exercise physiologists, national weightlifting medalists, professional boxing champions, and clinical nutritionists.
+        </p>
+      </div>
+
+      <div class="trainers-grid" id="trainers-grid-container">
+        <!-- Rendered dynamically from js/products-data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CLIENT TRANSFORMATIONS & SOCIAL PROOF ==================== -->
+  <section class="section" id="transformations" style="background: rgba(15, 19, 26, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Proof In The Iron</span>
+        <h2 class="section-title">Real People. <span>Titan Transformations.</span></h2>
+        <p class="section-subtitle">
+          Zero filters. Zero gimmicks. Real members who showed up, put in the work, and reshaped their bodies and lives under our coaching.
+        </p>
+      </div>
+
+      <div class="transformations-grid" id="transformations-grid-container">
+        <!-- Rendered dynamically from js/products-data.js -->
+      </div>
+      <div class="transformations-proof-row">
+        <div><strong>87%</strong><span>members hit their first 90-day milestone</span></div>
+        <div><strong>4.9/5</strong><span>average member coaching rating</span></div>
+        <div><strong>1:1</strong><span>goal review before your first plan</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MEMBERSHIP PRICING SECTION ==================== -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Transparent Memberships</span>
+        <h2 class="section-title">Invest In Your <span>Ultimate Physical Form</span></h2>
+        <p class="section-subtitle">
+          No hidden lock-in contracts or sneaky cancellation fees. Choose the tier that matches your goals.
+        </p>
+      </div>
+
+      <!-- Monthly vs Annual Toggle -->
+      <div class="pricing-toggle-wrap">
+        <span style="font-weight: 700; color: #fff;">Monthly</span>
+        <div class="toggle-switch" id="pricing-toggle-switch">
+          <div class="toggle-slider"></div>
+        </div>
+        <span style="font-weight: 700; color: #fff;">Annual</span>
+        <span class="discount-pill">Save 20%</span>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- India-wide Access Pass -->
+        <div class="pricing-card india-pass-card">
+          <div class="featured-ribbon india-pass-ribbon">Train Across India</div>
+          <h3 class="plan-name">Titan India Pass</h3>
+          <p class="plan-desc">One membership. Visit every participating Titan Forge gym across India.</p>
+          <div class="plan-price-wrap">
+            <span class="plan-currency">₹</span>
+            <span class="plan-amount" id="price-india-pass-val">2,499</span>
+            <span class="plan-period" id="price-india-pass-period">/month</span>
+          </div>
+          <ul class="plan-features-list">
+            <li class="included">Access at Delhi NCR, Mumbai, Bengaluru, Hyderabad, Pune & more</li>
+            <li class="included">Check in at any participating branch with your digital pass</li>
+            <li class="included">No city transfer fee when you travel</li>
+            <li class="included">Live branch finder with timings and crowd status</li>
+            <li class="included">Pause once per year while travelling</li>
+          </ul>
+          <button class="btn btn-primary btn-block" onclick="selectMembershipTier('Titan India Pass')">
+            Get India-wide Access ⚡
+          </button>
+        </div>
+
+        <!-- Silver Plan -->
+        <div class="pricing-card">
+          <h3 class="plan-name">Silver Iron</h3>
+          <p class="plan-desc">Essential open-gym access for self-driven lifters.</p>
+          <div class="plan-price-wrap">
+            <span class="plan-currency">₹</span>
+            <span class="plan-amount" id="price-silver-val">1,999</span>
+            <span class="plan-period" id="price-silver-period">/month</span>
+          </div>
+          <ul class="plan-features-list">
+            <li class="included">Full access to Heavy Iron arena</li>
+            <li class="included">Locker rooms & luxury showers</li>
+            <li class="included">Free high-speed member WiFi</li>
+            <li class="included">Titan Mobile companion app</li>
+            <li class="excluded">Group functional & boxing classes</li>
+            <li class="excluded">Recovery cryo-spa & sauna access</li>
+            <li class="excluded">1-on-1 private coaching sessions</li>
+          </ul>
+          <button class="btn btn-secondary btn-block" onclick="selectMembershipTier('Silver Iron')">
+            Choose Silver
+          </button>
+        </div>
+
+        <!-- Gold Pro Plan (Featured) -->
+        <div class="pricing-card featured">
+          <div class="featured-ribbon">Most Popular</div>
+          <h3 class="plan-name">Gold Pro</h3>
+          <p class="plan-desc">Comprehensive athletic training with unlimited classes & recovery.</p>
+          <div class="plan-price-wrap">
+            <span class="plan-currency">₹</span>
+            <span class="plan-amount" id="price-gold-val">3,499</span>
+            <span class="plan-period" id="price-gold-period">/month</span>
+          </div>
+          <ul class="plan-features-list">
+            <li class="included">Everything in Silver Iron</li>
+            <li class="included">Unlimited Group CrossFit & Boxing</li>
+            <li class="included">Full Cryo-Plunge & Infrared Sauna</li>
+            <li class="included">Monthly InBody 770 composition scan</li>
+            <li class="included">10% store discount on supplements</li>
+            <li class="included">1 Monthly Guest Pass for friends</li>
+            <li class="excluded">Dedicated private master coach</li>
+          </ul>
+          <button class="btn btn-primary btn-block" onclick="selectMembershipTier('Gold Pro')">
+            Get Gold Pro ⚡
+          </button>
+        </div>
+
+        <!-- Titan VIP Plan -->
+        <div class="pricing-card">
+          <h3 class="plan-name">Titan VIP</h3>
+          <p class="plan-desc">All-inclusive VIP access with dedicated private coaching & nutrition.</p>
+          <div class="plan-price-wrap">
+            <span class="plan-currency">₹</span>
+            <span class="plan-amount" id="price-titan-val">5,999</span>
+            <span class="plan-period" id="price-titan-period">/month</span>
+          </div>
+          <ul class="plan-features-list">
+            <li class="included">All Gold Pro benefits included</li>
+            <li class="included">2 Dedicated 1-on-1 PT sessions / month</li>
+            <li class="included">Personalized Sports Nutrition Plan</li>
+            <li class="included">24/7 VIP keycard facility access</li>
+            <li class="included">20% off all supplements & gear</li>
+            <li class="included">Complimentary daily protein shake</li>
+            <li class="included">VIP towel & laundry locker service</li>
+          </ul>
+          <button class="btn btn-orange btn-block" onclick="selectMembershipTier('Titan VIP')">
+            Go VIP Titan
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ACCORDION SECTION ==================== -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Clear Answers</span>
+        <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+        <p class="section-subtitle">
+          Everything you need to know about joining, membership policies, and facility amenities.
+        </p>
+      </div>
+
+      <div class="faq-accordion" id="faq-container">
+        <!-- Rendered dynamically from js/products-data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-badge">⚡</div>
+            TITAN<span>FORGE</span>
+          </div>
+          <p>
+            The ultimate gym, e-commerce, and athletic performance ecosystem. Forging elite physiques, unyielding discipline, and peak longevity.
+          </p>
+          <div style="display: flex; gap: 12px;">
+            <span style="font-size: 1.4rem; cursor: pointer;">📸</span>
+            <span style="font-size: 1.4rem; cursor: pointer;">▶️</span>
+            <span style="font-size: 1.4rem; cursor: pointer;">💬</span>
+            <span style="font-size: 1.4rem; cursor: pointer;">💼</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#programs">Training Disciplines</a></li>
+            <li><a href="#schedule">Class Timetable</a></li>
+            <li><a href="#calculators">Fitness Lab</a></li>
+            <li><a href="#store">Supplements & Gear</a></li>
+            <li><a href="#trainers">Master Coaches</a></li>
+            <li><a href="#pricing">Membership Plans</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Opening Hours</h4>
+          <ul class="footer-links">
+            <li><strong>Mon - Fri:</strong> 05:00 AM - 11:00 PM</li>
+            <li><strong>Saturday:</strong> 06:00 AM - 10:00 PM</li>
+            <li><strong>Sunday:</strong> 07:00 AM - 08:00 PM</li>
+            <li style="color: var(--accent-volt); margin-top: 8px;">VIP Members: 24/7 Keycard Access</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact & Location</h4>
+          <ul class="footer-links">
+            <li>📍 4500 Apex Boulevard, Metro District</li>
+            <li>📞 +1 (800) 555-TITAN</li>
+            <li>✉️ <a href="mailto:sachinkumar959939@gmail.com" style="color: inherit; text-decoration: none;">sachinkumar959939@gmail.com</a></li>
+            <li style="margin-top: 14px;">
+              <span class="section-tag" style="font-size: 0.75rem;">Now Open</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 TITAN FORGE ATHLETICS & PERFORMANCE. All Rights Reserved.</div>
+        <div>Built for Champions • Privacy Policy • Terms of Service</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== SLIDE-OUT CART DRAWER ==================== -->
+  <div class="cart-drawer-backdrop" id="cart-drawer-backdrop"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3>🛒 Gym Bag <span style="font-size: 0.9rem; color: var(--text-muted);">(Cart)</span></h3>
+      <button class="close-btn" id="close-cart-btn" aria-label="Close Cart">✕</button>
+    </div>
+
+    <!-- Free Shipping Bar -->
+    <div class="free-shipping-tracker">
+      <div id="shipping-tracker-msg">Add ₹1,499 more for Free Express Delivery across India!</div>
+      <div class="shipping-bar">
+        <div class="shipping-progress" id="shipping-progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- Items list -->
+    <div class="cart-items-body" id="cart-items-body">
+      <!-- Items dynamically injected -->
+    </div>
+
+    <!-- Footer summary -->
+    <div class="cart-footer">
+      <div class="promo-row">
+        <input type="text" id="cart-promo-input" class="form-control" placeholder="Promo code: TITAN10">
+        <button class="btn btn-secondary btn-sm" id="apply-promo-btn">Apply</button>
+      </div>
+
+      <div class="cart-summary-line">
+        <span>Subtotal</span>
+        <span id="cart-subtotal-val">₹0</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Discount</span>
+        <span id="cart-discount-val" style="color: var(--accent-volt);">-₹0</span>
+      </div>
+      <div class="cart-summary-line total">
+        <span>Estimated Total</span>
+        <span id="cart-total-val" style="color: var(--accent-volt);">₹0</span>
+      </div>
+
+      <button class="btn btn-primary btn-block" id="cart-checkout-btn">
+        Proceed To Checkout ⚡
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 1: CHECKOUT DIALOG ==================== -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="close-checkout-modal-btn">✕</button>
+      <div id="checkout-form-container">
+        <h3 style="font-size: 1.5rem; margin-bottom: 6px; color: #fff;">Secure Titan Checkout</h3>
+        <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 20px;">Fast delivery with 256-bit encrypted checkout.</p>
+
+        <div id="checkout-modal-summary"></div>
+
+        <form id="checkout-form">
+          <div class="calc-form-grid">
+            <div class="form-group">
+              <label for="checkout-name">Full Name</label>
+              <input type="text" id="checkout-name" class="form-control" placeholder="e.g. Rahul Sharma" required>
+            </div>
+            <div class="form-group">
+              <label for="checkout-phone">Phone Number / WhatsApp</label>
+              <input type="tel" id="checkout-phone" class="form-control" placeholder="+91 98765 43210" required>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label for="checkout-address">Delivery Address</label>
+            <input type="text" id="checkout-address" class="form-control" placeholder="Flat / Street / Apartment No." required>
+          </div>
+
+          <div class="calc-form-grid" style="margin-bottom: 16px;">
+            <div class="form-group">
+              <label for="checkout-city">City, State & Pincode</label>
+              <input type="text" id="checkout-city" class="form-control" placeholder="Mumbai, Maharashtra 400001" required>
+            </div>
+            <div class="form-group">
+              <label for="checkout-payment-method">Payment Method</label>
+              <select class="form-control" id="checkout-payment-method" onchange="onCheckoutPaymentMethodChange(this.value)">
+                <option value="upi_qr" selected>📱 Scan My UPI QR Code (GPay / PhonePe / Paytm / Any UPI)</option>
+                <option value="razorpay">💳 Razorpay Gateway (Cards, NetBanking & UPI)</option>
+                <option value="cod">💵 Cash on Delivery (In-Club Pickup)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic UPI Scanner Box -->
+          <div id="checkout-upi-qr-box" class="upi-qr-card">
+            <div style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:8px;">Scan with Any UPI App to Pay</div>
+            <div class="upi-qr-wrapper">
+              <img id="checkout-qr-img" src="assets/scanner.jpg" alt="UPI QR Code" class="upi-qr-img">
+            </div>
+            <div style="display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:8px;">
+              <span class="upi-id-badge" id="checkout-display-upi-id">8076333273@pthdfc</span>
+              <button type="button" class="upi-copy-btn" onclick="copyUpiId()">📋 Copy</button>
+            </div>
+            <div class="upi-apps-row">
+              <span>Google Pay</span> • <span>PhonePe</span> • <span>Paytm</span> • <span>BHIM</span> • <span>Cred</span>
+            </div>
+            <div class="form-group" style="text-align:left; margin-top:16px;">
+              <label for="checkout-utr" style="color:#fff; font-size:0.88rem;">12-Digit UPI Ref / UTR Number <span style="color:var(--accent-volt);">*</span></label>
+              <input type="text" id="checkout-utr" class="form-control" placeholder="e.g. 423891028374" maxlength="16">
+              <span style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Enter the 12-digit UTR / Transaction reference from your UPI app after payment.</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="place-order-submit-btn">
+            Verify & Confirm Order ⚡
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: CLASS BOOKING DIALOG ==================== -->
+  <div class="modal-overlay" id="class-booking-modal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="closeClassBookingModal()">✕</button>
+      <h3 style="font-size: 1.4rem; margin-bottom: 6px; color: #fff;">Reserve Your Spot</h3>
+      <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 18px;">
+        Small group sizes ensure maximum coach attention. Please arrive 10 minutes early.
+      </p>
+
+      <div id="booking-class-details"></div>
+
+      <form id="class-booking-form">
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label for="booking-name">Your Full Name</label>
+          <input type="text" id="booking-name" class="form-control" placeholder="John Doe" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label for="booking-phone">Phone Number (For SMS confirmation)</label>
+          <input type="tel" id="booking-phone" class="form-control" placeholder="+1 (555) 234-5678" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          Confirm Class Reservation ⚡
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 3: TRAINER PORTFOLIO DIALOG ==================== -->
+  <div class="modal-overlay" id="trainer-modal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="closeTrainerModal()">✕</button>
+      <div id="trainer-modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 4: GYM OWNER & TRAINER DETAILS ==================== -->
+  <div class="modal-overlay" id="gym-details-modal">
+    <div class="modal-dialog gym-details-dialog">
+      <button class="modal-close-btn" onclick="closeGymDetailsModal()" aria-label="Close gym details">✕</button>
+      <div id="gym-details-modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 5: MEMBERSHIP TIER DIALOG ==================== -->
+  <div class="modal-overlay" id="tier-modal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="closeTierModal()">✕</button>
+      <h3 id="tier-modal-title" style="font-size: 1.4rem; margin-bottom: 6px; color: #fff;">Enroll in Membership</h3>
+      <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 20px;">
+        Start training today with 0 registration fee and full facility onboarding.
+      </p>
+
+      <div id="tier-fee-summary"></div>
+
+      <form id="tier-enroll-form">
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label for="tier-name">Full Name</label>
+          <input type="text" id="tier-name" class="form-control" required placeholder="e.g. Aman Gupta">
+        </div>
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label for="tier-email">Email Address</label>
+          <input type="email" id="tier-email" class="form-control" required placeholder="aman@example.com">
+        </div>
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label for="tier-phone">Phone Number / WhatsApp</label>
+          <input type="tel" id="tier-phone" class="form-control" required placeholder="+91 98765 43210">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label for="tier-pay-mode">Payment Option</label>
+          <select id="tier-pay-mode" class="form-control" onchange="onTierPayModeChange(this.value)">
+            <option value="upi_qr" selected>📱 Scan My UPI QR Code (GPay / PhonePe / Paytm / Any UPI)</option>
+            <option value="razorpay">💳 Razorpay Gateway (Cards / NetBanking / UPI)</option>
+            <option value="desk">🏢 Pay at Gym Front Desk</option>
+          </select>
+        </div>
+
+        <!-- Membership UPI QR Scanner Box -->
+        <div id="tier-upi-qr-box" class="upi-qr-card">
+          <div style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:8px;">Scan with Any UPI App to Pay Membership Fee</div>
+          <div class="upi-qr-wrapper">
+            <img src="assets/scanner.jpg" alt="UPI QR Code" class="upi-qr-img">
+          </div>
+          <div style="display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:8px;">
+            <span class="upi-id-badge" id="tier-display-upi-id">8076333273@pthdfc</span>
+            <button type="button" class="upi-copy-btn" onclick="copyUpiId()">📋 Copy</button>
+          </div>
+          <div class="form-group" style="text-align:left; margin-top:14px;">
+            <label for="tier-utr" style="color:#fff; font-size:0.85rem;">12-Digit UPI Transaction UTR <span style="color:var(--accent-volt);">*</span></label>
+            <input type="text" id="tier-utr" class="form-control" placeholder="e.g. 423891028374" maxlength="16">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="tier-submit-btn">
+          Verify & Activate Membership ⚡
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 6: CELEBRITY DIET DETAIL MODAL ==================== -->
+  <div class="modal-overlay" id="celeb-diet-modal">
+    <div class="modal-dialog" style="max-width: 780px;">
+      <button class="modal-close-btn" onclick="closeCelebDietModal()">✕</button>
+      <div id="celeb-diet-modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ==================== TOAST NOTIFICATION CONTAINER ==================== -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="js/products-data.js"></script>
+  <script src="js/faridabad-branches.js?v=20260907"></script>
+  <script src="js/calculators.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js?v=20260907"></script>
+  <script src="js/google-auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+client_secret*.json
+mongo_config.local.json

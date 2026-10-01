@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TITAN FORGE | MongoDB Admin Management Panel</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background-color: #07090e;
+      padding: 30px 20px;
+    }
+    .admin-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .admin-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 30px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px 28px;
+    }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      position: relative;
+    }
+    .stat-card-num {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-top: 6px;
+    }
+    .table-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow-x: auto;
+      padding: 24px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+    th {
+      padding: 12px 16px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-subtle);
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-secondary);
+    }
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+      color: #fff;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .status-connected {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid #22c55e;
+      color: #4ade80;
+    }
+    .status-disconnected {
+      background: rgba(234, 179, 8, 0.15);
+      border: 1px solid #eab308;
+      color: #facc15;
+    }
+    .utr-code {
+      font-family: monospace;
+      color: var(--accent-volt);
+      background: rgba(212, 255, 0, 0.08);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .reminder-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .reminder-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+    .reminder-inline {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    textarea.input-box {
+      min-height: 105px;
+      resize: vertical;
+    }
+    .admin-toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      max-width: 320px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: rgba(12, 18, 28, 0.96);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #fff;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all 0.25s ease;
+      z-index: 9999;
+    }
+    .admin-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .admin-toast.success { border-color: rgba(34,197,94,0.8); }
+    .admin-toast.error { border-color: rgba(239,68,68,0.8); }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    
+    <!-- Top Header -->
+    <div class="admin-top-bar">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:1.8rem;">⚡</span>
+          <h1 style="font-size: 1.6rem; color:#fff;">TITAN FORGE — Database Management</h1>
+        </div>
+        <div style="color:var(--text-muted); font-size:0.85rem; margin-top:4px;">
+          Live Store Orders, UPI UTRs, VIP Trial Leads & Memberships
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:16px;">
+        <span class="status-badge" id="mongo-status-pill">
+          <span class="pulse-dot"></span>
+          <span id="mongo-status-text">Checking MongoDB...</span>
+        </span>
+        <a href="index.html" class="btn btn-secondary btn-sm">
+          ← View Website
+        </a>
+        <button class="btn btn-primary btn-sm" onclick="loadAllAdminData()">
+          🔄 Refresh
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="section-tag" style="margin-bottom:4px;">Store Orders</span>
+        <div class="stat-card-num" id="stat-orders-count">0</div>
+        <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">Placed via UPI & Razorpay</div>
+      </div>
+
+      <div class="stat-card">
+        <span class="section-tag" style="margin-bottom:4px;">Total Sales</span>
+        <div class="stat-card-num" style="color:var(--accent-volt);" id="stat-total-revenue">₹0</div>
+        <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">Verified order value</div>
+      </div>
+
+      <div class="stat-card">
+        <span class="section-tag" style="margin-bottom:4px;">Memberships</span>
+        <div class="stat-card-num" style="color:#38bdf8;" id="stat-memberships-count">0</div>
+        <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">Silver, Gold & Titan VIP</div>
+      </div>
+
+      <div class="stat-card">
+        <span class="section-tag" style="margin-bottom:4px;">VIP Free Passes</span>
+        <div class="stat-card-num" style="color:#facc15;" id="stat-leads-count">0</div>
+        <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">Prospective member leads</div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="calc-tabs" style="margin-bottom: 20px;">
+      <button class="calc-tab active" onclick="switchTab('orders', this)">
+        🛒 Store Orders (<span id="tab-orders-badge">0</span>)
+      </button>
+      <button class="calc-tab" onclick="switchTab('memberships', this)">
+        🏋️‍♂️ Memberships (<span id="tab-memberships-badge">0</span>)
+      </button>
+      <button class="calc-tab" onclick="switchTab('leads', this)">
+        🎫 VIP Trial Passes (<span id="tab-leads-badge">0</span>)
+      </button>
+      <button class="calc-tab" onclick="switchTab('bookings', this)">
+        📅 Class Bookings (<span id="tab-bookings-badge">0</span>)
+      </button>
+      <button class="calc-tab" onclick="switchTab('reminders', this)">
+        🔔 Member Reminders (<span id="tab-reminders-badge">0</span>)
+      </button>
+      <button class="calc-tab" onclick="switchTab('products', this)">
+        🛍️ Products (<span id="tab-products-badge">0</span>)
+      </button>
+      <button class="calc-tab" onclick="switchTab('reviews', this)">
+        ⭐ Reviews (<span id="tab-reviews-badge">0</span>)
+      </button>
+      <button class="calc-tab" onclick="switchTab('videos', this)">
+        🎥 Video Library (<span id="tab-videos-badge">0</span>)
+      </button>
+      <button class="calc-tab" onclick="switchTab('email-settings', this)">
+        ✉️ Email Alerts (<span id="tab-email-badge" style="color:var(--accent-volt);">Active</span>)
+      </button>
+    </div>
+
+    <!-- Table Container -->
+    <div class="table-container">
+      <!-- 1. Orders Table -->
+      <div id="tab-content-orders">
+        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:16px;">Product Purchases & Payment Proofs</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer Name</th>
+              <th>Phone Number</th>
+              <th>Address</th>
+              <th>Amount (₹)</th>
+              <th>Payment Method</th>
+              <th>UTR / Payment Ref</th>
+              <th>Date & Time</th>
+            </tr>
+          </thead>
+          <tbody id="orders-table-body">
+            <tr><td colspan="8" style="text-align:center; padding:30px;">Loading orders...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 2. Memberships Table -->
+      <div id="tab-content-memberships" style="display:none;">
+        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:16px;">Membership Subscriptions</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Member Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Tier Plan</th>
+              <th>Payment Mode</th>
+              <th>UTR ID</th>
+              <th>Enrolled Date</th>
+            </tr>
+          </thead>
+          <tbody id="memberships-table-body">
+            <tr><td colspan="7" style="text-align:center; padding:30px;">Loading memberships...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 3. VIP Leads Table -->
+      <div id="tab-content-leads" style="display:none;">
+        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:16px;">3-Day VIP Free Trial Leads</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Email Address</th>
+              <th>Phone / WhatsApp</th>
+              <th>Preferred Branch</th>
+              <th>Fitness Goal</th>
+              <th>Submitted Date</th>
+            </tr>
+          </thead>
+          <tbody id="leads-table-body">
+            <tr><td colspan="6" style="text-align:center; padding:30px;">Loading leads...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 4. Class Bookings Table -->
+      <div id="tab-content-bookings" style="display:none;">
+        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:16px;">Group Class Reservations</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Member Name</th>
+              <th>Phone Number</th>
+              <th>Class Name</th>
+              <th>Day & Time</th>
+              <th>Studio Room</th>
+              <th>Booked At</th>
+            </tr>
+          </thead>
+          <tbody id="bookings-table-body">
+            <tr><td colspan="6" style="text-align:center; padding:30px;">Loading reservations...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 5. Member Reminders -->
+      <div id="tab-content-reminders" style="display:none;">
+        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:16px;">Daily Member Reminders</h3>
+
+        <div class="reminder-form">
+          <div>
+            <label for="reminder-name">Member Name</label>
+            <input id="reminder-name" class="form-control" type="text" placeholder="Aman Verma" />
+          </div>
+          <div>
+            <label for="reminder-phone">Phone / WhatsApp</label>
+            <input id="reminder-phone" class="form-control" type="tel" placeholder="+91 98765 43210" />
+          </div>
+          <div>
+            <label for="reminder-email">Email</label>
+            <input id="reminder-email" class="form-control" type="email" placeholder="aman@example.com" />
+          </div>
+          <div>
+            <label for="reminder-date">Reminder Date</label>
+            <input id="reminder-date" class="form-control" type="date" />
+          </div>
+        </div>
+
+        <div style="margin-top:16px;">
+          <label for="reminder-message">Today's task / set to do</label>
+          <textarea id="reminder-message" class="form-control input-box" placeholder="Today do 4 sets of incline dumbbell press, 2 warm-up sets, and 30 mins cardio after the main lift."></textarea>
+        </div>
+
+        <div class="reminder-inline">
+          <div style="min-width:180px;">
+            <label for="reminder-time">Send at time</label>
+            <input id="reminder-time" class="form-control" type="time" value="08:30" />
+          </div>
+        </div>
+
+        <div class="reminder-actions">
+          <button class="btn btn-primary" onclick="sendMemberReminder()">Send Free WhatsApp Reminder</button>
+          <button class="btn btn-secondary" onclick="sendEmailReminder()">Send Free Email</button>
+          <button class="btn btn-secondary" onclick="saveReminderToDb()">Save Reminder</button>
+          <button class="btn btn-secondary" onclick="scheduleReminder()">Schedule for Today</button>
+        </div>
+
+        <div style="margin-top:22px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Member</th>
+                <th>Phone</th>
+                <th>Reminder Date</th>
+                <th>Task</th>
+                <th>Status</th>
+                <th>Provider</th>
+              </tr>
+            </thead>
+            <tbody id="reminders-table-body">
+              <tr><td colspan="6" style="text-align:center; padding:30px;">Loading reminders...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 6. Product Management -->
+      <div id="tab-content-products" style="display:none;">
+        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:16px;">Store Product Management</h3>
+
+        <div class="reminder-form" style="margin-top:0; margin-bottom:20px;">
+          <div>
+            <label for="product-name">Product Name</label>
+            <input id="product-name" class="form-control" type="text" placeholder="Titan Pro Whey" />
+          </div>
+          <div>
+            <label for="product-category">Category</label>
+            <select id="product-category" class="form-control">
+              <option value="Supplements">Supplements</option>
+              <option value="Gear">Gear</option>
+              <option value="Apparel">Apparel</option>
+              <option value="Accessories">Accessories</option>
+            </select>
+          </div>
+          <div>
+            <label for="product-price">Price (₹)</label>
+            <input id="product-price" class="form-control" type="number" min="0" value="1999" />
+          </div>
+          <div>
+            <label for="product-original-price">Original Price (₹)</label>
+            <input id="product-original-price" class="form-control" type="number" min="0" value="2499" />
+          </div>
+          <div>
+            <label for="product-badge">Badge</label>
+            <input id="product-badge" class="form-control" type="text" value="New" placeholder="Best Seller" />
+          </div>
+          <div>
+            <label for="product-image">Image URL</label>
+            <input id="product-image" class="form-control" type="text" value="assets/supplements.jpg" placeholder="assets/supplements.jpg" />
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <label for="product-short-desc">Short Description</label>
+            <textarea id="product-short-desc" class="form-control input-box" placeholder="Premium vegetarian protein blend for strength and recovery."></textarea>
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <label for="product-tags">Tags (comma separated)</label>
+            <input id="product-tags" class="form-control" type="text" placeholder="High Protein, Lean Gains, Recovery" />
+          </div>
+        </div>
+
+        <div class="reminder-actions">
+          <button class="btn btn-primary" onclick="addProductFromAdmin()">Add Product</button>
+        </div>
+
+        <div style="margin-top:22px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Badge</th>
+                <th>Image</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="products-admin-table-body">
+              <tr><td colspan="6" style="text-align:center; padding:30px; color:var(--text-muted);">Loading products...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 7. Review Moderation -->
+      <div id="tab-content-reviews" style="display:none;">
+        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:16px;">Review Approval Queue</h3>
+        <p style="color:var(--text-secondary); margin-bottom:18px;">Reviews stay hidden on the website until you approve them here.</p>
+        <table>
+          <thead><tr><th>Reviewer</th><th>Branch</th><th>Rating</th><th>Visit Type</th><th>Review</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="reviews-table-body"><tr><td colspan="7" style="text-align:center; padding:30px;">Loading reviews...</td></tr></tbody>
+        </table>
+      </div>
+
+      <!-- 8. Video Library Management -->
+      <div id="tab-content-videos" style="display:none;">
+        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:16px;">Video Library Management</h3>
+        <p style="color:var(--text-secondary); margin-bottom:18px;">Videos scanned automatically from the <code>videos/</code> directory and custom videos saved in MongoDB/backup.</p>
+
+        <div class="reminder-form" style="margin-top:0; margin-bottom:20px;">
+          <div>
+            <label for="video-title">Video Title</label>
+            <input id="video-title" class="form-control" type="text" placeholder="e.g. Full-Body Power Circuit" />
+          </div>
+          <div>
+            <label for="video-category">Category</label>
+            <select id="video-category" class="form-control">
+              <option value="students">Students</option>
+              <option value="corporate">Corporate</option>
+              <option value="night-shift">Night Shift</option>
+              <option value="women">Women</option>
+              <option value="muscle-building">Muscle Building</option>
+              <option value="fat-loss">Fat Loss / HIIT</option>
+              <option value="mobility">Mobility & Yoga</option>
+              <option value="cardio">Cardio Blast</option>
+              <option value="calisthenics">Calisthenics</option>
+            </select>
+          </div>
+          <div>
+            <label for="video-url">Video URL or File Path</label>
+            <input id="video-url" class="form-control" type="text" placeholder="videos/students/school-students.mp4" />
+          </div>
+          <div>
+            <label for="video-poster">Poster Image URL</label>
+            <input id="video-poster" class="form-control" type="text" placeholder="https://images.unsplash.com/photo-..." />
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <label for="video-desc">Short Description</label>
+            <input id="video-desc" class="form-control" type="text" placeholder="High energy strength and posture session." />
+          </div>
+        </div>
+
+        <div class="reminder-actions">
+          <button class="btn btn-primary" onclick="addVideoFromAdmin()">Add Custom Video</button>
+        </div>
+
+        <div style="margin-top:22px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Video</th>
+                <th>Category</th>
+                <th>File / URL</th>
+                <th>Source Type</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="videos-admin-table-body">
+              <tr><td colspan="5" style="text-align:center; padding:30px; color:var(--text-muted);">Loading video library...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      <!-- 9. Email Notification Settings -->
+      <div id="tab-content-email-settings" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+          <div>
+            <h3 style="font-size:1.25rem; color:#fff; margin-bottom:4px;">Live Enquiry & Lead Email Alerts</h3>
+            <p style="color:var(--text-secondary); font-size:0.88rem;">Instantly receive customer VIP passes, memberships, coach consultations, and store orders straight to your Gmail.</p>
+          </div>
+          <span class="status-badge status-connected" id="email-status-badge">
+            <span class="pulse-dot"></span> Alerts Active
+          </span>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px; margin-bottom:24px;">
+          <div class="reminder-form" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+            <div>
+              <label style="color:#fff; font-size:0.88rem; font-weight:600; display:block; margin-bottom:8px;">Admin Gmail Address (Receives All Alerts)</label>
+              <input type="email" id="admin-email-input" class="input-box" value="sachinkumar959939@gmail.com" placeholder="sachinkumar959939@gmail.com" required style="width:100%;">
+              <span style="font-size:0.75rem; color:var(--text-muted); margin-top:4px; display:block;">All website enquiries & payments will be forwarded to this inbox.</span>
+            </div>
+
+            <div>
+              <label style="color:#fff; font-size:0.88rem; font-weight:600; display:block; margin-bottom:8px;">Google App Password (16 Letters)</label>
+              <input type="password" id="admin-app-pass-input" class="input-box" placeholder="•••••••••••••••• (Enter 16-char App Password)" style="width:100%;">
+              <span style="font-size:0.75rem; color:var(--text-muted); margin-top:4px; display:block;">From Google Account > Security > 2-Step Verification > App Passwords.</span>
+            </div>
+          </div>
+
+          <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+            <button class="btn btn-primary btn-sm" onclick="saveEmailSettings()">
+              💾 Save Settings
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="sendTestEmail()">
+              🚀 Send Test Email Now
+            </button>
+            <span id="email-save-status" style="font-size:0.85rem; color:#4ade80;"></span>
+          </div>
+        </div>
+
+        <!-- Helpful Quick Guide -->
+        <div style="background:rgba(212,255,0,0.04); border:1px solid rgba(212,255,0,0.18); border-radius:10px; padding:18px;">
+          <h4 style="color:var(--accent-volt); font-size:0.95rem; margin-bottom:8px;">🔑 How to enable Gmail delivery with App Password (Takes 1 minute):</h4>
+          <ol style="color:var(--text-secondary); font-size:0.85rem; line-height:1.7; padding-left:20px; margin:0;">
+            <li>Visit <a href="https://myaccount.google.com/security" target="_blank" style="color:var(--accent-volt); text-decoration:underline;">Google Account Security</a>.</li>
+            <li>Make sure <strong>2-Step Verification</strong> is turned ON, then search for <strong>"App Passwords"</strong>.</li>
+            <li>Type <em>"Gym Website"</em> and click <strong>Create</strong>.</li>
+            <li>Copy the 16-letter password shown (e.g. <code>abcd efgh ijkl mnop</code>) and paste it into the box above, then click <strong>Save Settings</strong>!</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="admin-toast" class="admin-toast" aria-live="polite"></div>
+
+  <script>
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('admin-toast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.className = `admin-toast show ${type}`;
+      clearTimeout(window.__adminToastTimer);
+      window.__adminToastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2600);
+    }
+
+    let currentTab = 'orders';
+
+    function switchTab(tab, el) {
+      currentTab = tab;
+      document.querySelectorAll('.calc-tab').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+
+      document.getElementById('tab-content-orders').style.display = tab === 'orders' ? 'block' : 'none';
+      document.getElementById('tab-content-memberships').style.display = tab === 'memberships' ? 'block' : 'none';
+      document.getElementById('tab-content-leads').style.display = tab === 'leads' ? 'block' : 'none';
+      document.getElementById('tab-content-bookings').style.display = tab === 'bookings' ? 'block' : 'none';
+      document.getElementById('tab-content-reminders').style.display = tab === 'reminders' ? 'block' : 'none';
+      document.getElementById('tab-content-products').style.display = tab === 'products' ? 'block' : 'none';
+      document.getElementById('tab-content-reviews').style.display = tab === 'reviews' ? 'block' : 'none';
+      document.getElementById('tab-content-videos').style.display = tab === 'videos' ? 'block' : 'none';
+      document.getElementById('tab-content-email-settings').style.display = tab === 'email-settings' ? 'block' : 'none';
+
+      if (tab === 'email-settings') {
+        loadEmailSettings();
+      }
+    }
+
+    async function loadEmailSettings() {
+      try {
+        const res = await fetch('/api/admin/email-config');
+        if (res.ok) {
+          const cfg = await res.json();
+          if (cfg.admin_email) {
+            document.getElementById('admin-email-input').value = cfg.admin_email;
+          }
+          const badge = document.getElementById('email-status-badge');
+          if (badge) {
+            if (cfg.has_password) {
+              badge.className = 'status-badge status-connected';
+              badge.innerHTML = '<span class="pulse-dot"></span> Gmail Connected & Active';
+            } else {
+              badge.className = 'status-badge status-disconnected';
+              badge.innerHTML = '⚠️ Waiting for App Password';
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('Could not load email config:', err);
+      }
+    }
+
+    async function saveEmailSettings() {
+      const email = document.getElementById('admin-email-input').value.trim();
+      const appPass = document.getElementById('admin-app-pass-input').value.trim();
+
+      if (!email) {
+        showToast('Please enter a valid Gmail address.', 'error');
+        return;
+      }
+
+      const payload = {
+        admin_email: email,
+        smtp_user: email,
+        smtp_enabled: true
+      };
+      if (appPass) {
+        payload.smtp_app_password = appPass;
+      }
+
+      try {
+        const res = await fetch('/api/admin/email-config', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast('✅ Email settings saved successfully!', 'success');
+          document.getElementById('admin-app-pass-input').value = '';
+          loadEmailSettings();
+        } else {
+          showToast('Could not save settings.', 'error');
+        }
+      } catch (err) {
+        showToast('Error saving settings: ' + err.message, 'error');
+      }
+    }
+
+    async function sendTestEmail() {
+      const email = document.getElementById('admin-email-input').value.trim();
+      showToast(`Sending test alert to ${email}...`, 'info');
+
+      try {
+        const res = await fetch('/api/admin/send-test-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast(`🚀 Test email successfully delivered to ${email}!`, 'success');
+        } else {
+          showToast(`Alert logged to server console. To deliver to real inbox, save your Google App Password!`, 'info');
+        }
+      } catch (err) {
+        showToast('Test request failed: ' + err.message, 'error');
+      }
+    }
+
+    function getProductList() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('titan_store_products') || 'null');
+        if (Array.isArray(saved) && saved.length) return saved;
+      } catch (e) {}
+      return Array.isArray(window.GYM_DATA?.products) ? window.GYM_DATA.products : [];
+    }
+
+    function setProductList(productList) {
+      const normalized = (Array.isArray(productList) ? productList : []).map(product => ({
+        id: product.id || product._id || `prod-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`,
+        name: product.name || 'New Product',
+        category: product.category || 'Supplements',
+        price: Number(product.price) || 0,
+        originalPrice: Number(product.originalPrice) || Number(product.price) || 0,
+        badge: product.badge || 'New',
+        rating: Number(product.rating) || 4.8,
+        reviews: Number(product.reviews) || 0,
+        image: product.image || 'assets/supplements.jpg',
+        shortDesc: product.shortDesc || 'Premium Titan Forge product.',
+        tags: Array.isArray(product.tags) ? product.tags : (product.tags ? String(product.tags).split(',').map(tag => tag.trim()).filter(Boolean) : [])
+      }));
+
+      localStorage.setItem('titan_store_products', JSON.stringify(normalized));
+      if (window.GYM_DATA) window.GYM_DATA.products = normalized;
+      window.dispatchEvent(new CustomEvent('titan-products-updated', { detail: normalized }));
+      return normalized;
+    }
+
+    async function loadAdminProducts() {
+      try {
+        const res = await fetch('/api/products');
+        if (res.ok) {
+          const serverProducts = await res.json();
+          if (Array.isArray(serverProducts)) {
+            setProductList(serverProducts);
+          }
+        }
+      } catch (err) {
+        console.warn('Could not fetch products from server, using local fallback:', err);
+      }
+      renderAdminProducts();
+    }
+
+    function renderAdminProducts() {
+      const tableBody = document.getElementById('products-admin-table-body');
+      if (!tableBody) return;
+
+      const products = getProductList();
+      const badgeEl = document.getElementById('tab-products-badge');
+      if (badgeEl) badgeEl.textContent = products.length;
+
+      if (!products.length) {
+        tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:30px; color:var(--text-muted);">No products in store. Add your first product above!</td></tr>';
+        return;
+      }
+
+      tableBody.innerHTML = products.map(product => `
+        <tr>
+          <td>
+            <strong style="color:#fff;">${product.name}</strong><br>
+            <small style="color:var(--text-muted);">${product.shortDesc || '-'}</small>
+          </td>
+          <td><span class="status-badge" style="background:rgba(212,255,0,0.1); color:var(--accent-volt);">${product.category || 'Supplements'}</span></td>
+          <td><strong style="color:var(--accent-volt);">₹${Number(product.price || 0).toLocaleString('en-IN')}</strong></td>
+          <td>${product.badge ? `<span style="font-size:0.8rem; background:#222; padding:3px 8px; border-radius:4px; border:1px solid #444;">${product.badge}</span>` : '-'}</td>
+          <td><img src="${product.image || 'assets/supplements.jpg'}" alt="${product.name}" style="width:48px; height:48px; object-fit:cover; border-radius:8px; border:1px solid rgba(255,255,255,0.1);" onerror="this.src='assets/supplements.jpg'" /></td>
+          <td>
+            <button class="btn btn-secondary btn-sm" style="color:#ff4d4d; border-color:rgba(255,77,77,0.4);" onclick="deleteProductFromAdmin('${product.id || product._id}')">
+              🗑️ Delete
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    async function addProductFromAdmin() {
+      const name = document.getElementById('product-name').value.trim();
+      const category = document.getElementById('product-category').value;
+      const price = Number(document.getElementById('product-price').value || 0);
+      const originalPrice = Number(document.getElementById('product-original-price').value || price);
+      const badge = document.getElementById('product-badge').value.trim() || 'New';
+      const image = document.getElementById('product-image').value.trim() || 'assets/supplements.jpg';
+      const shortDesc = document.getElementById('product-short-desc').value.trim() || 'Premium Titan Forge product.';
+      const tags = document.getElementById('product-tags').value.split(',').map(tag => tag.trim()).filter(Boolean);
+
+      if (!name) {
+        showToast('Product name is required.', 'error');
+        return;
+      }
+
+      const newProduct = {
+        id: `prod-${Date.now()}`,
+        name,
+        category,
+        price,
+        originalPrice,
+        badge,
+        rating: 4.8,
+        reviews: 0,
+        image,
+        shortDesc,
+        tags
+      };
+
+      const products = getProductList();
+      setProductList([newProduct, ...products]);
+      renderAdminProducts();
+
+      try {
+        await fetch('/api/products', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newProduct)
+        });
+      } catch (err) {
+        console.warn('Could not post product to server:', err);
+      }
+
+      showToast('Product added successfully and updated on main website!', 'success');
+
+      document.getElementById('product-name').value = '';
+      document.getElementById('product-category').value = 'Supplements';
+      document.getElementById('product-price').value = '1999';
+      document.getElementById('product-original-price').value = '2499';
+      document.getElementById('product-badge').value = 'New';
+      document.getElementById('product-image').value = 'assets/supplements.jpg';
+      document.getElementById('product-short-desc').value = '';
+      document.getElementById('product-tags').value = '';
+    }
+
+    async function deleteProductFromAdmin(productId) {
+      if (!confirm('Are you sure you want to delete this product from the store?')) {
+        return;
+      }
+
+      const pIdStr = String(productId);
+      const products = getProductList().filter(product => String(product.id) !== pIdStr && String(product._id) !== pIdStr);
+      setProductList(products);
+      renderAdminProducts();
+
+      try {
+        await fetch('/api/products/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: productId })
+        });
+      } catch (err) {
+        console.warn('Could not delete product on server:', err);
+      }
+
+      showToast('Product deleted successfully from store.', 'success');
+    }
+
+    async function checkStatus() {
+      try {
+        const res = await fetch('/api/status');
+        const data = await res.json();
+        const pill = document.getElementById('mongo-status-pill');
+        const txt = document.getElementById('mongo-status-text');
+
+        if (data.mongodb_connected) {
+          pill.className = 'status-badge status-connected';
+          txt.textContent = `MongoDB Connected: ${data.database_name}`;
+        } else {
+          pill.className = 'status-badge status-disconnected';
+          txt.textContent = 'Local Database (MongoDB Ready)';
+        }
+      } catch (err) {
+        document.getElementById('mongo-status-text').textContent = 'Local Storage Mode';
+      }
+    }
+
+    async function fetchJsonOrBackup(route, collectionKey, backupKey = collectionKey) {
+      try {
+        const res = await fetch(route);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const text = await res.text();
+        if (!text || text.trim().startsWith('<')) throw new Error('HTML response');
+        const parsed = JSON.parse(text);
+        if (Array.isArray(parsed)) return parsed;
+        if (parsed && Array.isArray(parsed[collectionKey])) return parsed[collectionKey];
+        if (parsed && Array.isArray(parsed[backupKey])) return parsed[backupKey];
+        return [];
+      } catch (e) {
+        try {
+          const backupRes = await fetch('gym_backup.json');
+          const backupJson = await backupRes.json();
+          const list = backupJson[collectionKey] || backupJson[backupKey] || [];
+          return Array.isArray(list) ? list : [];
+        } catch (backupErr) {
+          return [];
+        }
+      }
+    }
+
+    async function loadAllAdminData() {
+      checkStatus();
+      loadOrders();
+      loadMemberships();
+      loadLeads();
+      loadBookings();
+      loadReminders();
+      loadAdminProducts();
+      loadReviews();
+    }
+
+    async function loadOrders() {
+      try {
+        const orders = await fetchJsonOrBackup('/api/orders', 'orders');
+        document.getElementById('stat-orders-count').textContent = orders.length;
+        document.getElementById('tab-orders-badge').textContent = orders.length;
+
+        const totalRevenue = orders.reduce((sum, o) => sum + (o.amount || 0), 0);
+        document.getElementById('stat-total-revenue').textContent = `₹${totalRevenue.toLocaleString('en-IN')}`;
+
+        const tbody = document.getElementById('orders-table-body');
+        if (!orders || orders.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:30px; color:var(--text-muted);">No orders in database yet. Orders placed will appear here instantly.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = orders.map(o => `
+          <tr>
+            <td><strong style="color:#fff;">${o.order_id || 'N/A'}</strong></td>
+            <td>${o.customer_name || 'Anonymous'}</td>
+            <td>${o.phone || '-'}</td>
+            <td style="max-width:200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${o.address || '-'}, ${o.city || ''}</td>
+            <td><strong style="color:var(--accent-volt);">₹${(o.amount || 0).toLocaleString('en-IN')}</strong></td>
+            <td>${o.payment_method || 'UPI'}</td>
+            <td><span class="utr-code">${o.payment_ref || o.utr || 'N/A'}</span></td>
+            <td>${o.created_at || '-'}</td>
+          </tr>
+        `).join('');
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    async function loadMemberships() {
+      try {
+        const members = await fetchJsonOrBackup('/api/memberships', 'memberships');
+        document.getElementById('stat-memberships-count').textContent = members.length;
+        document.getElementById('tab-memberships-badge').textContent = members.length;
+
+        const tbody = document.getElementById('memberships-table-body');
+        if (!members || members.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:30px; color:var(--text-muted);">No memberships enrolled yet.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = members.map(m => `
+          <tr>
+            <td><strong style="color:#fff;">${m.name}</strong></td>
+            <td>${m.email}</td>
+            <td>${m.phone}</td>
+            <td><span style="color:var(--accent-volt); font-weight:700;">${m.tier || m.plan}</span></td>
+            <td>${m.pay_mode || 'UPI QR'}</td>
+            <td><span class="utr-code">${m.utr || 'Desk'}</span></td>
+            <td>${m.created_at || '-'}</td>
+          </tr>
+        `).join('');
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    async function loadLeads() {
+      try {
+        const leads = await fetchJsonOrBackup('/api/leads', 'vip_leads', 'leads');
+        document.getElementById('stat-leads-count').textContent = leads.length;
+        document.getElementById('tab-leads-badge').textContent = leads.length;
+
+        const tbody = document.getElementById('leads-table-body');
+        if (!leads || leads.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:30px; color:var(--text-muted);">No VIP leads submitted yet.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = leads.map(l => `
+          <tr>
+            <td><strong style="color:#fff;">${l.name}</strong></td>
+            <td>${l.email}</td>
+            <td>${l.phone}</td>
+            <td>${l.branch || 'Downtown'}</td>
+            <td><span class="section-tag" style="margin:0; font-size:0.75rem;">${l.goal || 'General Fitness'}</span></td>
+            <td>${l.created_at || '-'}</td>
+          </tr>
+        `).join('');
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    async function loadBookings() {
+      try {
+        const bookings = await fetchJsonOrBackup('/api/bookings', 'class_bookings', 'bookings');
+        document.getElementById('tab-bookings-badge').textContent = bookings.length;
+
+        const tbody = document.getElementById('bookings-table-body');
+        if (!bookings || bookings.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:30px; color:var(--text-muted);">No class spots booked yet.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = bookings.map(b => `
+          <tr>
+            <td><strong style="color:#fff;">${b.member_name}</strong></td>
+            <td>${b.phone}</td>
+            <td>${b.class_name || 'Workout Class'}</td>
+            <td>${b.day || ''} ${b.time || ''}</td>
+            <td>${b.room || 'Arena'}</td>
+            <td>${b.created_at || '-'}</td>
+          </tr>
+        `).join('');
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    async function loadReminders() {
+      try {
+        const reminders = await fetchJsonOrBackup('/api/reminders', 'reminders');
+        document.getElementById('tab-reminders-badge').textContent = reminders.length;
+
+        const tbody = document.getElementById('reminders-table-body');
+        if (!reminders || reminders.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:30px; color:var(--text-muted);">No reminders scheduled yet.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = reminders.map(r => `
+          <tr>
+            <td><strong style="color:#fff;">${r.member_name || 'Member'}</strong></td>
+            <td>${r.phone || '-'}</td>
+            <td>${r.reminder_date || 'Today'}</td>
+            <td>${r.message || 'No message'}</td>
+            <td><span class="section-tag" style="margin:0; font-size:0.72rem;">${r.status || 'Pending'}</span></td>
+            <td>${r.provider || 'browser'}</td>
+          </tr>
+        `).join('');
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    async function loadReviews() {
+      try {
+        const reviews = await fetchJsonOrBackup('/api/reviews', 'reviews');
+        document.getElementById('tab-reviews-badge').textContent = reviews.filter(review => review.status === 'Pending').length;
+        const tbody = document.getElementById('reviews-table-body');
+        if (!reviews.length) {
+          tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:30px; color:var(--text-muted);">No reviews submitted yet.</td></tr>';
+          return;
+        }
+        tbody.innerHTML = reviews.map(review => `
+          <tr>
+            <td><strong style="color:#fff;">${review.reviewer_name || 'Anonymous'}</strong><br><small>${review.created_at || '-'}</small></td>
+            <td>${review.location_id || '-'}</td>
+            <td style="color:var(--accent-volt);">${'★'.repeat(Number(review.rating || 0))}</td>
+            <td>${review.visit_type || 'Member'}</td>
+            <td style="max-width:280px; white-space:normal;">${review.comment || '-'}</td>
+            <td><span class="section-tag" style="margin:0; font-size:0.72rem;">${review.status || 'Pending'}</span></td>
+            <td>${review.status === 'Pending' ? `<button class="btn btn-primary btn-sm" onclick="moderateReview('${review._id}', 'Approved')">Approve</button> <button class="btn btn-secondary btn-sm" onclick="moderateReview('${review._id}', 'Rejected')">Reject</button>` : '-'}</td>
+          </tr>
+        `).join('');
+      } catch (e) { console.warn(e); }
+    }
+
+    async function moderateReview(reviewId, status) {
+      try {
+        const response = await fetch('/api/reviews', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: reviewId, status })
+        });
+        const result = await response.json();
+        if (!result.success) throw new Error('Review update failed');
+        showToast(`Review ${status.toLowerCase()} successfully.`, 'success');
+        loadReviews();
+      } catch (e) {
+        showToast('Review status update failed.', 'error');
+      }
+    }
+
+    function buildReminderMessage() {
+      const memberName = document.getElementById('reminder-name').value.trim() || 'Member';
+      const customMessage = document.getElementById('reminder-message').value.trim();
+      const taskText = customMessage || 'Today do your workout block and focus on progressive overload.';
+      return `Hi ${memberName}, this is your Titan Forge daily reminder. Today you need to do: ${taskText} Stay consistent and keep moving.`;
+    }
+
+    function requestReminderPermission() {
+      if (!('Notification' in window)) {
+        return;
+      }
+      if (Notification.permission === 'default') {
+        Notification.requestPermission().catch(() => {});
+      }
+    }
+
+    function triggerDesktopReminder(message) {
+      requestReminderPermission();
+      if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification('Titan Forge Reminder', { body: message });
+      }
+    }
+
+    async function saveReminderToDb() {
+      const payload = {
+        member_name: document.getElementById('reminder-name').value.trim(),
+        phone: document.getElementById('reminder-phone').value.trim(),
+        email: document.getElementById('reminder-email').value.trim(),
+        reminder_date: document.getElementById('reminder-date').value || new Date().toISOString().split('T')[0],
+        message: document.getElementById('reminder-message').value.trim(),
+        status: 'Pending',
+        provider: 'browser'
+      };
+
+      if (!payload.member_name || !payload.message) {
+        showToast('Please add member name and reminder text.', 'error');
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/reminders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          showToast('Reminder saved successfully.', 'success');
+          loadReminders();
+          document.getElementById('reminder-name').value = '';
+          document.getElementById('reminder-phone').value = '';
+          document.getElementById('reminder-email').value = '';
+          document.getElementById('reminder-date').value = '';
+          document.getElementById('reminder-message').value = '';
+        } else {
+          showToast('Could not save reminder.', 'error');
+        }
+      } catch (e) {
+        console.warn(e);
+        showToast('Reminder save failed.', 'error');
+      }
+    }
+
+    async function scheduleReminder() {
+      const memberName = document.getElementById('reminder-name').value.trim();
+      const message = document.getElementById('reminder-message').value.trim();
+      const phone = document.getElementById('reminder-phone').value.trim();
+      const dateVal = document.getElementById('reminder-date').value || new Date().toISOString().split('T')[0];
+      const timeVal = document.getElementById('reminder-time').value || '08:30';
+
+      if (!memberName || !message) {
+        showToast('Add member name and task before scheduling.', 'error');
+        return;
+      }
+
+      const payload = {
+        member_name: memberName,
+        phone,
+        reminder_date: dateVal,
+        message,
+        status: 'Pending',
+        scheduled_for: `${dateVal} ${timeVal}:00`,
+        provider: 'browser'
+      };
+
+      try {
+        const response = await fetch('/api/reminders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        if (result.success) {
+          showToast(`Reminder scheduled for ${dateVal} ${timeVal}.`, 'success');
+          loadReminders();
+        }
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    function sendEmailReminder() {
+      const memberName = document.getElementById('reminder-name').value.trim();
+      const email = document.getElementById('reminder-email').value.trim();
+      const message = buildReminderMessage();
+      if (!memberName || !email || !message.trim()) {
+        showToast('Add member name, email, and task message first.', 'error');
+        return;
+      }
+      const subject = encodeURIComponent(`Titan Forge Reminder for ${memberName}`);
+      const body = encodeURIComponent(message);
+      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+      triggerDesktopReminder(message);
+      showToast(`📧 Email draft prepared for ${memberName}.`, 'success');
+      saveReminderToDb();
+    }
+
+    function sendMemberReminder() {
+      const memberName = document.getElementById('reminder-name').value.trim();
+      const phone = document.getElementById('reminder-phone').value.trim();
+      const message = buildReminderMessage();
+
+      if (!memberName || !message.trim()) {
+        showToast('Add the member name and the task message first.', 'error');
+        return;
+      }
+
+      triggerDesktopReminder(message);
+
+      if (phone) {
+        const digits = phone.replace(/\D/g, '');
+        if (digits) {
+          const waUrl = `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
+          window.open(waUrl, '_blank');
+        }
+      }
+
+      showToast(`✅ Free WhatsApp draft prepared for ${memberName}.`, 'success');
+      saveReminderToDb();
+    }
+
+    async function loadAllAdminData() {
+      checkStatus();
+      loadOrders();
+      loadMemberships();
+      loadLeads();
+      loadBookings();
+      loadReminders();
+      loadAdminProducts();
+      loadReviews();
+      loadVideos();
+    }
+
+    async function loadVideos() {
+      try {
+        const videos = await fetchJsonOrBackup('/api/videos', 'videos');
+        const badgeEl = document.getElementById('tab-videos-badge');
+        if (badgeEl) badgeEl.textContent = videos.length;
+
+        const tbody = document.getElementById('videos-admin-table-body');
+        if (!tbody) return;
+
+        if (!videos.length) {
+          tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:30px; color:var(--text-muted);">No videos found in library.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = videos.map(v => {
+          const isFs = String(v._id || '').startsWith('fs-');
+          const videoId = v.id || v._id || '';
+          return `
+            <tr>
+              <td>
+                <strong style="color:#fff;">${v.title || 'Workout Video'}</strong><br>
+                <small style="color:var(--text-muted);">${v.description || '-'}</small>
+              </td>
+              <td><span class="section-tag" style="margin:0; font-size:0.75rem;">${v.category_label || v.category || 'General'}</span></td>
+              <td style="max-width:240px; word-break:break-all; font-size:0.8rem; color:var(--text-secondary);">
+                <code>${v.video_url}</code>
+              </td>
+              <td><span style="font-size:0.8rem; color:${isFs ? '#4ade80' : 'var(--accent-volt)'};">${isFs ? '📁 Scanned File' : '🌐 Custom Entry'}</span></td>
+              <td>
+                ${!isFs ? `
+                  <button class="btn btn-secondary btn-sm" style="color:#ff4d4d; border-color:rgba(255,77,77,0.4);" onclick="deleteVideoFromAdmin('${videoId}')">
+                    🗑️ Delete
+                  </button>
+                ` : '<span style="color:var(--text-muted); font-size:0.78rem;">Permanent File</span>'}
+              </td>
+            </tr>
+          `;
+        }).join('');
+      } catch (e) {
+        console.warn('Error loading videos in admin:', e);
+      }
+    }
+
+    async function addVideoFromAdmin() {
+      const title = document.getElementById('video-title').value.trim();
+      const category = document.getElementById('video-category').value;
+      const video_url = document.getElementById('video-url').value.trim();
+      const poster = document.getElementById('video-poster').value.trim() || 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80';
+      const description = document.getElementById('video-desc').value.trim() || 'Workout guidance session.';
+
+      if (!title || !video_url) {
+        showToast('Please provide video title and URL or file path.', 'error');
+        return;
+      }
+
+      const payload = {
+        title,
+        category,
+        video_url,
+        poster,
+        description,
+        doc_link: 'college-women-diet-plan.html'
+      };
+
+      try {
+        const res = await fetch('/api/videos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast('Video added to library successfully!', 'success');
+          document.getElementById('video-title').value = '';
+          document.getElementById('video-url').value = '';
+          document.getElementById('video-poster').value = '';
+          document.getElementById('video-desc').value = '';
+          loadVideos();
+        } else {
+          showToast('Could not save video.', 'error');
+        }
+      } catch (e) {
+        showToast('Video save failed.', 'error');
+      }
+    }
+
+    async function deleteVideoFromAdmin(videoId) {
+      if (!confirm('Are you sure you want to delete this custom video?')) return;
+      try {
+        const res = await fetch('/api/videos/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: videoId })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast('Video deleted from library.', 'success');
+          loadVideos();
+        } else {
+          showToast('Could not delete video.', 'error');
+        }
+      } catch (e) {
+        showToast('Delete request failed.', 'error');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadAllAdminData);
+  </script>
+</body>
+</html>

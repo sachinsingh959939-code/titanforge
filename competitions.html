@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Titan Forge Indian gym competition directory with state-wise bodybuilding, powerlifting and fitness event listings.">
+  <title>TITAN FORGE | Competition Circuit</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/competition-page.css">
+</head>
+<body class="competition-page">
+  <header class="navbar competition-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo" aria-label="Titan Forge home">
+        <div class="logo-badge">⚡</div>
+        TITAN<span>FORGE</span>
+      </a>
+      <nav class="competition-nav-links" aria-label="Competition navigation">
+        <a href="#events">Events</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#organiser-note">Organiser note</a>
+      </nav>
+      <a href="index.html" class="btn btn-secondary btn-sm">Back to Gym</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="competition-hero">
+      <div class="container competition-hero-grid">
+        <div class="competition-hero-copy">
+          <span class="section-tag">🏆 Indian Competition Circuit</span>
+          <h1>Your next stage<br><span>starts here.</span></h1>
+          <p>Find listed bodybuilding, powerlifting and fitness competitions across Indian states. Compare the city, date, venue and divisions before you plan your prep.</p>
+          <div class="competition-hero-actions">
+            <a href="#events" class="btn btn-primary">Explore Events ↓</a>
+            <a href="index.html#lead-section" class="btn btn-secondary">Register Interest</a>
+          </div>
+          <div class="competition-hero-stats">
+            <div><strong id="competition-page-count">0</strong><span>listed events</span></div>
+            <div><strong id="competition-state-count">0</strong><span>states covered</span></div>
+            <div><strong>3</strong><span>competition types</span></div>
+          </div>
+        </div>
+        <div class="competition-hero-panel" aria-label="Competition preparation highlights">
+          <span class="panel-kicker">BEFORE YOU ENTER</span>
+          <h2>Prepare with<br>clarity.</h2>
+          <div class="competition-focus-row"><span>01</span><strong>Choose your division</strong></div>
+          <div class="competition-focus-row"><span>02</span><strong>Confirm rules with organiser</strong></div>
+          <div class="competition-focus-row"><span>03</span><strong>Build your stage plan</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="competition-section" id="events">
+      <div class="container">
+        <div class="competition-section-heading">
+          <div>
+            <span class="section-tag">The Event Directory</span>
+            <h2>Find your <span>arena</span></h2>
+          </div>
+          <p>Filter by state and discipline, then open the event card for the details you need before contacting the organiser.</p>
+        </div>
+        <div class="competition-toolbar">
+          <label class="competition-search"><span>⌕</span><input id="competition-page-search" type="search" placeholder="Search city, state or event..."></label>
+          <select id="competition-page-state" aria-label="Filter by state"><option value="All">All States</option></select>
+          <select id="competition-page-type" aria-label="Filter by competition type">
+            <option value="All">All Types</option>
+            <option value="Bodybuilding">Bodybuilding</option>
+            <option value="Powerlifting">Powerlifting</option>
+            <option value="Fitness">Fitness</option>
+          </select>
+        </div>
+        <div class="competition-results-meta"><span id="competition-page-results">Loading events...</span><button class="text-button" id="clear-competition-filter" type="button">Clear filters</button></div>
+        <div class="competition-page-grid" id="competition-page-grid"></div>
+      </div>
+    </section>
+
+    <section class="competition-process" id="how-it-works">
+      <div class="container">
+        <div class="competition-section-heading compact"><div><span class="section-tag">Your prep route</span><h2>From listing to <span>show day</span></h2></div></div>
+        <div class="competition-process-grid">
+          <article><span>01</span><h3>Pick the right stage</h3><p>Compare the event type, city, date and divisions with your current training goal.</p></article>
+          <article><span>02</span><h3>Confirm the details</h3><p>Ask the organiser about rules, weigh-in, entry fee, federation and required documents.</p></article>
+          <article><span>03</span><h3>Build your peak</h3><p>Give yourself enough time for training, posing, recovery and a realistic competition plan.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="competition-note" id="organiser-note">
+      <div class="container competition-note-inner">
+        <div><span class="section-tag">Important</span><h2>Listings need confirmation.</h2></div>
+        <p>Dates, venues, entry fees and federation details can change. Titan Forge listings are for discovery and do not replace the official organiser announcement. Always confirm before making travel or payment arrangements.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer competition-footer"><div class="container"><div class="footer-bottom"><div>© 2026 TITAN FORGE ATHLETICS & PERFORMANCE.</div><a href="index.html">Back to main gym website ↑</a></div></div></footer>
+
+  <script src="js/products-data.js"></script>
+  <script src="js/competition-page.js"></script>
+</body>
+</html>

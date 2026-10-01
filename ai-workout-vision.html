@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Titan Forge AI Live Camera Posture & Rep Coach. Real-time body pose tracking with green/red angle corrections for home workouts.">
+  <title>TITAN FORGE | AI Live Posture & Rep Coach ⚡</title>
+  
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ai-vision.css">
+
+  <!-- Google MediaPipe Pose & Camera Utils CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+</head>
+<body class="ai-vision-page">
+  <!-- Top Navigation -->
+  <header class="navbar ai-vision-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo" aria-label="Titan Forge Home">
+        <div class="logo-badge">⚡</div>
+        TITAN<span>FORGE</span>
+        <span class="ai-badge">AI VISION</span>
+      </a>
+      <nav class="video-nav-links" aria-label="AI Coach navigation">
+        <a href="#camera-section">AI Camera</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="video-library.html">Video Library</a>
+        <a href="diet.html">Diet Lab</a>
+      </nav>
+      <a href="index.html" class="btn btn-secondary btn-sm">← Back to Gym</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Header -->
+    <section class="ai-hero-header">
+      <div class="container">
+        <span class="section-tag">⚡ Live AI Home Workout Vision</span>
+        <h1>Real-Time AI <span>Posture & Rep Coach</span></h1>
+        <p>Turn on your camera for instant live biomechanical feedback. The AI analyzes joint angles in real time: <strong style="color:#22c55e;">Green lines</strong> mean perfect form, and <strong style="color:#ef4444;">Red lines</strong> alert you to posture faults.</p>
+        
+        <!-- Workout Mode Selector Bar -->
+        <div class="workout-mode-bar">
+          <button class="mode-btn active" id="mode-btn-free" type="button">
+            <span>🎯</span> Free Practice Mode
+          </button>
+          <button class="mode-btn" id="mode-btn-circuit" type="button">
+            <span>⚡</span> 15-Min AI Smart Circuit Mode <span class="hot-badge">AUTO ROUTINE</span>
+          </button>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="category-filter-bar" id="category-filter-bar" role="tablist" aria-label="Filter exercises by category">
+          <button class="cat-filter-btn active" type="button" data-category="all">🌐 All Workouts (28)</button>
+          <button class="cat-filter-btn" type="button" data-category="bodyweight">🤸 Without Equipment (Home / Bodyweight)</button>
+          <button class="cat-filter-btn" type="button" data-category="dumbbells">🏋️ Dumbbell Exercises</button>
+          <button class="cat-filter-btn" type="button" data-category="cardio">⚡ Cardio & Core HIIT</button>
+        </div>
+
+        <!-- Dynamic Exercise Selector Chips Container -->
+        <div class="exercise-picker-bar" id="exercise-picker" role="tablist" aria-label="Choose exercise to track">
+          <!-- Dynamically populated from js/ai-vision.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Main AI Camera Section -->
+    <section class="ai-workspace-section" id="camera-section">
+      <div class="container">
+        <div class="ai-workspace-grid">
+          
+          <!-- Left: Live Video + Skeleton Canvas Card -->
+          <div class="camera-viewport-card">
+            <div class="camera-stage" id="camera-stage">
+              <!-- Video & Canvas Overlays -->
+              <video id="webcam-video" playsinline muted autoplay></video>
+              <canvas id="ghost-canvas"></canvas>
+              <canvas id="skeleton-canvas"></canvas>
+              <canvas id="confetti-canvas"></canvas>
+
+              <!-- Standby Placeholder Overlay -->
+              <div class="camera-standby-overlay" id="camera-standby-overlay">
+                <div class="standby-icon">🤖</div>
+                <h3 style="font-size: 1.6rem; color: #fff; margin-bottom: 8px;">AI Vision Coach Ready</h3>
+                <p style="color: var(--text-secondary); max-width: 440px; margin-bottom: 22px; font-size: 0.92rem; line-height: 1.5;">
+                  Position your phone or laptop camera so your full body is visible. Click below to start live pose tracking.
+                </p>
+                <button class="btn btn-primary" id="btn-start-camera" type="button">
+                  📷 Start AI Live Camera ⚡
+                </button>
+                <div style="margin-top: 14px; font-size: 0.78rem; color: var(--text-muted);">
+                  🔒 100% Private: Video is processed locally in your browser and never uploaded.
+                </div>
+              </div>
+
+              <!-- Top Status HUD -->
+              <div class="camera-hud-top">
+                <div class="hud-status-badge">
+                  <span class="hud-dot" id="hud-camera-dot"></span>
+                  <span id="hud-camera-text">Camera Off (Standby)</span>
+                </div>
+                <div class="hud-status-badge hud-stance-badge" id="hud-stance-badge">
+                  <span>📐 Stance: <strong>Side View</strong></span>
+                </div>
+                <div class="hud-status-badge hud-streak-badge" id="hud-streak-badge">
+                  <span>🔥 Streak: <strong>0x</strong></span>
+                </div>
+                <div class="hud-status-badge" style="background: rgba(212, 255, 0, 0.15); border-color: var(--accent-volt); color: var(--accent-volt);">
+                  <span>Tracking: <strong id="active-exercise-title">Squats</strong></span>
+                </div>
+              </div>
+
+              <!-- Circuit Timer Strip (Visible during Smart Circuit) -->
+              <div class="circuit-timer-strip" id="circuit-timer-strip" style="display: none;">
+                <div class="circuit-info-col">
+                  <span class="circuit-station-pill" id="circuit-station-pill">Station 1 of 4</span>
+                  <strong id="circuit-exercise-name">Bodyweight Air Squats</strong>
+                </div>
+                <div class="circuit-countdown-box">
+                  <span class="circuit-phase-label" id="circuit-phase-label">WORK INTERVAL</span>
+                  <span class="circuit-timer-digits" id="circuit-timer-digits">00:45</span>
+                </div>
+                <button class="circuit-skip-btn" id="circuit-skip-btn" type="button">Skip Station ⏭</button>
+              </div>
+
+              <!-- Live Posture Correction Banner -->
+              <div class="posture-feedback-banner info" id="posture-feedback-banner">
+                <div class="feedback-text-wrap">
+                  <span class="feedback-icon" id="feedback-icon">⚡</span>
+                  <div>
+                    <div class="feedback-msg" id="feedback-msg">Ready to Track</div>
+                    <div class="feedback-sub" id="feedback-sub">Start camera and begin your exercise reps.</div>
+                  </div>
+                </div>
+                <div class="angle-badge-hud" id="hud-live-angle">--°</div>
+              </div>
+            </div>
+
+            <!-- Bottom Camera Controls -->
+            <div class="camera-controls-bar">
+              <div class="controls-left">
+                <button class="btn btn-secondary btn-sm" id="btn-stop-camera" type="button" style="display:none; color:#ef4444; border-color:rgba(239,68,68,0.4);">
+                  ⏹ Stop Camera
+                </button>
+                <button class="btn btn-secondary btn-sm" id="btn-reset-reps" type="button">
+                  🔄 Reset Reps
+                </button>
+                <button class="btn btn-secondary btn-sm" id="btn-toggle-ghost" type="button">
+                  👻 Ghost: ON
+                </button>
+              </div>
+              <div class="controls-right">
+                <button class="btn btn-secondary btn-sm active" id="btn-toggle-voice-cmd" type="button">
+                  🎙️ Voice ON
+                </button>
+                <button class="btn btn-secondary btn-sm active" id="btn-toggle-voice" type="button">
+                  🔊 Coach ON
+                </button>
+                <button class="btn btn-primary btn-sm" id="btn-finish-workout" type="button" style="background:linear-gradient(135deg,#d4ff00,#00f0ff); color:#080b0f; font-weight:900;">
+                  🏁 Finish Workout
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Analytics & Form Guide Sidebar -->
+          <aside class="ai-sidebar">
+            <!-- Rep & Score Card -->
+            <div class="sidebar-card">
+              <h3><span>📊</span> Reps & Accuracy</h3>
+              <div class="stats-counter-grid">
+                <div class="counter-box">
+                  <div class="counter-num" id="hud-rep-count">0</div>
+                  <div class="counter-label">Total Reps</div>
+                </div>
+                <div class="counter-box">
+                  <div class="counter-num" style="color: #4ade80;" id="hud-valid-reps">0</div>
+                  <div class="counter-label">Perfect Form</div>
+                </div>
+              </div>
+
+              <div class="accuracy-meter-wrap">
+                <div class="accuracy-label-row">
+                  <span>Form Accuracy Score</span>
+                  <strong style="color: var(--accent-volt);" id="hud-form-score">100%</strong>
+                </div>
+                <div class="accuracy-bar-track">
+                  <div class="accuracy-bar-fill" id="accuracy-bar-fill" style="width: 100%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 🎥 Dummy Video & Visual Form Demo Card -->
+            <div class="sidebar-card">
+              <h3>
+                <span>🎥</span> How-To Dummy Demo
+                <span class="demo-live-badge">LOOPING REF</span>
+              </h3>
+              <div class="demo-player-container">
+                <div class="demo-canvas-wrap">
+                  <canvas id="demo-animation-canvas" width="360" height="210"></canvas>
+                  <div class="demo-phase-banner">
+                    <span class="phase-pulse"></span>
+                    <span id="demo-phase-text">Phase: Eccentric (Lowering)</span>
+                  </div>
+                  <div class="demo-angle-tag" id="demo-target-angle">Target: 90°</div>
+                </div>
+
+                <div class="demo-meta-grid">
+                  <div class="demo-meta-box">
+                    <div class="meta-title">Target Muscles</div>
+                    <div class="meta-val" id="demo-target-muscles">Quads & Glutes</div>
+                  </div>
+                  <div class="demo-meta-box">
+                    <div class="meta-title">Breathing Tempo</div>
+                    <div class="meta-val" id="demo-breathing-tempo">💨 Inhale ↓ / Exhale ↑</div>
+                  </div>
+                </div>
+
+                <div class="demo-cue-tip" id="demo-cue-tip">
+                  💡 <strong>Pro Tip:</strong> Keep chest tall, push knees out over toes, and drive through heels.
+                </div>
+
+                <div class="demo-controls-strip">
+                  <div class="demo-btn-group">
+                    <button class="demo-mini-btn" id="btn-demo-toggle-play" type="button">⏸ Pause</button>
+                    <button class="demo-mini-btn" id="btn-demo-toggle-speed" type="button">⚡ 1.0x</button>
+                  </div>
+                  <span style="font-size: 0.72rem; color: var(--text-muted);">Syncs with selected workout</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Rules & Checklist Card -->
+            <div class="sidebar-card">
+              <h3><span>🎯</span> Form Guidelines</h3>
+              <ul class="form-rule-list" id="form-rules-container">
+                <!-- Dynamically updated by selected exercise -->
+              </ul>
+
+              <div class="legend-strip">
+                <div class="legend-chip"><span class="legend-line line-green"></span> Correct Angle</div>
+                <div class="legend-chip"><span class="legend-line line-red"></span> Posture Fault</div>
+                <div class="legend-chip"><span class="legend-line line-yellow"></span> In-Motion</div>
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="diet-section diet-process" id="how-it-works" style="padding: 40px 0;">
+      <div class="container">
+        <div class="diet-section-heading compact">
+          <div>
+            <span class="section-tag">How AI Vision Works</span>
+            <h2>Train at home with <span>elite precision</span></h2>
+          </div>
+        </div>
+        <div class="process-grid">
+          <article>
+            <span>01</span>
+            <h3>Position Your Device</h3>
+            <p>Set up your device 6 to 8 feet away with your full body in frame from head to toe.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Live Joint Tracking</h3>
+            <p>The AI tracks your skeleton and calculates joint flexion angles 30 times per second.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Real-Time Correction</h3>
+            <p>Green lines confirm correct form; red alerts and voice prompts correct faults before injury.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 TITAN FORGE ATHLETICS & PERFORMANCE • AI VISION ENGINE.</div>
+        <a href="index.html">Back to main website ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Post-Workout AI Performance Report Card Modal -->
+  <div class="report-modal-overlay" id="report-modal-overlay" style="display: none;">
+    <div class="report-modal-card">
+      <div class="report-header">
+        <div class="report-badge">🏆 SESSION COMPLETE</div>
+        <h2>AI Biomechanical <span>Performance Report</span></h2>
+        <p>Titan Forge AI Form Analytics & Energy Output</p>
+      </div>
+
+      <div class="report-stats-grid">
+        <div class="report-stat-item">
+          <span class="report-stat-label">Total Reps Completed</span>
+          <strong class="report-stat-value" id="report-total-reps">0</strong>
+        </div>
+        <div class="report-stat-item">
+          <span class="report-stat-label">Perfect Form Reps</span>
+          <strong class="report-stat-value text-green" id="report-valid-reps">0</strong>
+        </div>
+        <div class="report-stat-item">
+          <span class="report-stat-label">Form Accuracy Score</span>
+          <strong class="report-stat-value text-volt" id="report-accuracy-score">100%</strong>
+        </div>
+        <div class="report-stat-item">
+          <span class="report-stat-label">Est. Calories Burned</span>
+          <strong class="report-stat-value text-cyan" id="report-calories">0 kcal</strong>
+        </div>
+        <div class="report-stat-item">
+          <span class="report-stat-label">Workout Duration</span>
+          <strong class="report-stat-value" id="report-duration">00:00</strong>
+        </div>
+        <div class="report-stat-item">
+          <span class="report-stat-label">Titan XP Level</span>
+          <strong class="report-stat-value text-gold" id="report-titan-level">⚡ Level 2 Warrior</strong>
+        </div>
+      </div>
+
+      <div class="report-insights-box">
+        <h4><span>🧠</span> AI Biomechanical Assessment</h4>
+        <p id="report-ai-assessment">Great session! Your knee depth consistency was within the 90° standard range. Maintain core rigidity during push phases.</p>
+      </div>
+
+      <div class="report-actions-row">
+        <button class="btn btn-secondary" id="btn-close-report" type="button">Close Report</button>
+        <button class="btn btn-primary" id="btn-share-report" type="button">📤 Share / Save Summary</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- AI Vision Engine Script -->
+  <script src="js/ai-vision.js"></script>
+</body>
+</html>

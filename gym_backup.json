@@ -1,0 +1,670 @@
+{
+  "orders": [
+    {
+      "order_id": "TF-IN-376191",
+      "customer_name": "Prince Kumar",
+      "phone": "ffdfsf",
+      "address": "fsdf",
+      "city": "fd",
+      "payment_method": "Direct UPI QR Scan (GPay / PhonePe / Paytm)",
+      "payment_ref": "UTR: dffdfdfdfdf",
+      "utr": "UTR: dffdfdfdfdf",
+      "amount": 1999,
+      "items": [
+        {
+          "id": "prod-2",
+          "name": "VOLT High-Stim Igniter Pre-Workout (300g)",
+          "price": 1999,
+          "quantity": 1,
+          "total": 1999
+        }
+      ],
+      "items_count": 1,
+      "status": "Confirmed",
+      "created_at": "2026-10-01 19:29:38",
+      "_id": "6abe674ac87a31ef974c4bc5"
+    },
+    {
+      "order_id": "TF-IN-880642",
+      "customer_name": "wefefsdfs",
+      "phone": "fsdfsdffd",
+      "address": "sfsdfsdfs",
+      "city": "fsdsdfsdfdf",
+      "payment_method": "Direct UPI QR Scan (GPay / PhonePe / Paytm)",
+      "payment_ref": "UTR: fsafdsdf",
+      "utr": "UTR: fsafdsdf",
+      "amount": 4499,
+      "items": [
+        {
+          "id": "prod-1",
+          "name": "VOLT 100% Pure Whey Isolate (2.5kg)",
+          "price": 4499,
+          "quantity": 1,
+          "total": 4499
+        }
+      ],
+      "items_count": 1,
+      "status": "Confirmed",
+      "created_at": "2026-10-01 19:27:14",
+      "_id": "6abe66bac87a31ef974c4bc4"
+    },
+    {
+      "order_id": "TF-IN-326814",
+      "customer_name": "nghhnfgn",
+      "phone": "12121212121",
+      "address": "hhhr",
+      "city": "gdgdfg",
+      "payment_method": "Cash on Delivery (In-Club)",
+      "payment_ref": "COD-24604",
+      "utr": "COD-24604",
+      "amount": 2999,
+      "items": [
+        {
+          "id": "prod-4",
+          "name": "Titan Heavy Duty 10mm Leather Powerlifting Belt",
+          "price": 2999,
+          "quantity": 1,
+          "total": 2999
+        }
+      ],
+      "items_count": 1,
+      "status": "Confirmed",
+      "created_at": "2026-09-07 09:27:52"
+    },
+    {
+      "order_id": "TF-IN-654542",
+      "customer_name": "l../;o.i",
+      "phone": "65656565656",
+      "address": "ff",
+      "city": "fef",
+      "payment_method": "Cash on Delivery (In-Club)",
+      "payment_ref": "COD-36205",
+      "utr": "COD-36205",
+      "amount": 1299,
+      "items": [
+        {
+          "id": "prod-5",
+          "name": "Titan Forge Heavyweight Acid-Wash Pump Cover",
+          "price": 1299,
+          "quantity": 1,
+          "total": 1299
+        }
+      ],
+      "items_count": 1,
+      "status": "Confirmed",
+      "created_at": "2026-09-07 09:09:47"
+    },
+    {
+      "order_id": "TF-IN-215629",
+      "customer_name": "vbfxgbf",
+      "phone": "7878786666",
+      "address": "ytghf",
+      "city": "hfgdrg",
+      "payment_method": "Cash on Delivery (In-Club)",
+      "payment_ref": "COD-76077",
+      "utr": "COD-76077",
+      "amount": 1199,
+      "items": [
+        {
+          "id": "prod-3",
+          "name": "VOLT Pure Micronized Creatine Monohydrate (500g)",
+          "price": 1199,
+          "quantity": 1,
+          "total": 1199
+        }
+      ],
+      "items_count": 1,
+      "status": "Confirmed",
+      "created_at": "2026-09-07 08:58:38"
+    },
+    {
+      "order_id": "TF-IN-335168",
+      "customer_name": "qwerty",
+      "phone": "7878787878",
+      "address": "fttt",
+      "city": "delhi 1210089",
+      "payment_method": "Cash on Delivery (In-Club)",
+      "payment_ref": "COD-47254",
+      "utr": "COD-47254",
+      "amount": 1299,
+      "items": [
+        {
+          "id": "prod-5",
+          "name": "Titan Forge Heavyweight Acid-Wash Pump Cover",
+          "price": 1299,
+          "quantity": 1,
+          "total": 1299
+        }
+      ],
+      "items_count": 1,
+      "status": "Confirmed",
+      "created_at": "2026-09-07 08:55:01"
+    },
+    {
+      "order_id": "TF-IN-787399",
+      "customer_name": "Prince Kumar",
+      "phone": "8076333273",
+      "address": "dffgdf",
+      "city": "delhi",
+      "payment_method": "Cash on Delivery (In-Club)",
+      "payment_ref": "COD-76958",
+      "utr": "COD-76958",
+      "amount": 6498,
+      "items": [
+        {
+          "id": "prod-2",
+          "name": "VOLT High-Stim Igniter Pre-Workout (300g)",
+          "price": 1999,
+          "quantity": 1,
+          "total": 1999
+        },
+        {
+          "id": "prod-1",
+          "name": "VOLT 100% Pure Whey Isolate (2.5kg)",
+          "price": 4499,
+          "quantity": 1,
+          "total": 4499
+        }
+      ],
+      "items_count": 2,
+      "status": "Confirmed",
+      "created_at": "2026-09-05 21:42:05"
+    },
+    {
+      "order_id": "TF-TEST-001",
+      "customer_name": "Aman Gupta",
+      "phone": "9876543210",
+      "address": "221B Baker St",
+      "city": "Delhi 110001",
+      "payment_method": "UPI QR",
+      "payment_ref": "UTR423891028374",
+      "amount": 4599,
+      "items": [
+        {
+          "name": "Titan Whey Isolate",
+          "price": 4599,
+          "quantity": 1
+        }
+      ],
+      "created_at": "2026-09-05 12:59:42"
+    }
+  ],
+  "vip_leads": [
+    {
+      "name": "fwef",
+      "email": "fsdf@gmail.com",
+      "phone": "sdff",
+      "branch": "⭐ South Delhi Flagship (GK-2)",
+      "goal": "Hypertrophy & Muscle Gain",
+      "created_at": "2026-10-01 20:17:52",
+      "_id": "6abe729898b59ea899e9d5b0"
+    },
+    {
+      "name": "Prince Entertainment Trick",
+      "email": "singhjayprakash9213@gmail.com",
+      "phone": "jk",
+      "branch": "⭐ South Delhi Flagship (GK-2)",
+      "goal": "Hypertrophy & Muscle Gain",
+      "created_at": "2026-09-29 23:40:15",
+      "_id": "6abbff07260b8d538fe6a516"
+    },
+    {
+      "name": "Prince Kumar",
+      "email": "princekkummar@gmail.com",
+      "phone": "7897897890",
+      "branch": "⭐ South Delhi Flagship (GK-2)",
+      "goal": "Hypertrophy & Muscle Gain",
+      "created_at": "2026-09-07 17:28:21",
+      "_id": "6a9ea6ddf241cba0615d37fb"
+    },
+    {
+      "name": "Rohan Verma",
+      "email": "rohan@gmail.com",
+      "phone": "9876543210",
+      "branch": "Downtown Arena",
+      "goal": "Hypertrophy & Muscle Gain",
+      "created_at": "2026-09-05 13:13:51"
+    }
+  ],
+  "memberships": [
+    {
+      "name": "iughugjgjh",
+      "email": "princekkummar@gmail.com",
+      "phone": "jokopiou-0uipio",
+      "tier": "Titan India Pass",
+      "plan": "Titan India Pass",
+      "pay_mode": "Direct UPI QR Scan",
+      "utr": "hioojkpok,po",
+      "amount": 2499,
+      "billing": "Monthly",
+      "access_scope": "India-wide participating gyms",
+      "created_at": "2026-10-01 20:37:54",
+      "_id": "6abe774a3b0336a1b58d2e4d"
+    },
+    {
+      "name": "Prince Entertainment Trick",
+      "email": "singhjayprakash9213@gmail.com",
+      "phone": "..,",
+      "tier": "Titan India Pass",
+      "plan": "Titan India Pass",
+      "pay_mode": "Direct UPI QR Scan",
+      "utr": "990-9-00-0-0",
+      "amount": 2499,
+      "billing": "Monthly",
+      "access_scope": "India-wide participating gyms",
+      "created_at": "2026-09-29 23:41:25",
+      "_id": "6abbff4d260b8d538fe6a517"
+    },
+    {
+      "name": "tf",
+      "email": "princekkummar@gmail.com",
+      "phone": "ff",
+      "tier": "Titan India Pass",
+      "plan": "Titan India Pass",
+      "pay_mode": "Direct UPI QR Scan",
+      "utr": "ffsfsff",
+      "amount": 2499,
+      "billing": "Monthly",
+      "access_scope": "India-wide participating gyms",
+      "created_at": "2026-09-28 23:00:28",
+      "_id": "6abaa434fbaf911711fb805c"
+    },
+    {
+      "name": "gfgsdfgv",
+      "email": "gsggsdfg@bhgvb.com",
+      "phone": "8989089876",
+      "tier": "Silver Iron",
+      "plan": "Silver Iron",
+      "pay_mode": "Gym Front Desk",
+      "utr": "PAY_AT_DESK",
+      "amount": 1999,
+      "billing": "Monthly",
+      "created_at": "2026-09-07 09:03:51"
+    },
+    {
+      "name": "Karan Singh",
+      "email": "karan@gmail.com",
+      "phone": "9988776655",
+      "tier": "Gold Pro",
+      "plan": "Gold Pro",
+      "pay_mode": "Direct UPI QR Scan",
+      "utr": "429182371928",
+      "amount": 3499,
+      "billing": "Monthly",
+      "created_at": "2026-09-05 13:13:53"
+    }
+  ],
+  "class_bookings": [
+    {
+      "member_name": "Priya Sharma",
+      "phone": "9123456780",
+      "class_name": "Spartan HIIT Conditioning",
+      "trainer": "Coach Vikram Malhotra",
+      "day": "Tuesday",
+      "time": "07:00 AM - 08:00 AM",
+      "room": "CrossFit Arena",
+      "created_at": "2026-09-05 13:13:55"
+    }
+  ],
+  "reviews": [
+    {
+      "location_id": "titan-delhi-south-gk",
+      "reviewer_name": "jy",
+      "visit_type": "Member",
+      "rating": 2,
+      "comment": "jj",
+      "created_at": "2026-09-07 12:35:46",
+      "status": "Approved",
+      "_id": "6a9e624a5c945625c6d34f5b",
+      "moderated_at": "2026-09-07 12:36:10"
+    },
+    {
+      "location_id": "titan-delhi-south-gk",
+      "reviewer_name": "jnfhft",
+      "visit_type": "Member",
+      "rating": 5,
+      "comment": "yrtgerg",
+      "created_at": "2026-09-07 12:11:48",
+      "status": "Approved",
+      "_id": "local-review-1788763308890",
+      "moderated_at": "2026-09-07 12:12:07"
+    },
+    {
+      "location_id": "titan-faridabad-sec41",
+      "reviewer_name": "ujhyh",
+      "visit_type": "Member",
+      "rating": 5,
+      "comment": "yrty",
+      "created_at": "2026-09-07 12:11:02",
+      "status": "Approved",
+      "_id": "local-review-1788763262873",
+      "moderated_at": "2026-09-07 12:11:15"
+    },
+    {
+      "location_id": "titan-delhi-south-gk",
+      "reviewer_name": "vgv",
+      "visit_type": "Member",
+      "rating": 1,
+      "comment": "fdscvdfgvbghb",
+      "created_at": "2026-09-05 22:36:57",
+      "_id": "local-review-legacy-0-2026-09-05-22:36:57",
+      "status": "Approved",
+      "moderated_at": "2026-09-07 12:02:38"
+    },
+    {
+      "location_id": "titan-delhi-south-gk",
+      "reviewer_name": "vbvcbv",
+      "visit_type": "Day Pass Visitor",
+      "rating": 5,
+      "comment": "gdfgdfg",
+      "created_at": "2026-09-05 22:36:35",
+      "_id": "local-review-legacy-1-2026-09-05-22:36:35",
+      "status": "Approved",
+      "moderated_at": "2026-09-07 12:02:39"
+    },
+    {
+      "location_id": "titan-delhi-south-gk",
+      "reviewer_name": "sass",
+      "visit_type": "Personal Training Client",
+      "rating": 5,
+      "comment": "dddfsad",
+      "created_at": "2026-09-05 22:36:23",
+      "_id": "local-review-legacy-2-2026-09-05-22:36:23",
+      "status": "Approved",
+      "moderated_at": "2026-09-07 12:02:41"
+    }
+  ],
+  "reminders": [],
+  "videos": [
+    {
+      "_id": "vid-1",
+      "title": "School Fitness Starter",
+      "category": "students",
+      "category_label": "School Students",
+      "video_url": "videos/school-students.mp4",
+      "poster": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80",
+      "badge": "12 mins · Beginner",
+      "description": "Simple energy, posture and strength routines that fit around study time and school life.",
+      "doc_link": "college-women-diet-plan.html",
+      "created_at": "2026-09-28 10:00:00"
+    },
+    {
+      "_id": "vid-2",
+      "title": "College Burn & Build",
+      "category": "students",
+      "category_label": "College Students",
+      "video_url": "videos/homepage.mp4",
+      "poster": "https://images.unsplash.com/photo-1541534401786-2077eed87a74?auto=format&fit=crop&w=900&q=80",
+      "badge": "18 mins · Intermediate",
+      "description": "Strength and conditioning videos designed for busy days, hostel life and focused goals.",
+      "doc_link": "college-women-diet-plan.html",
+      "created_at": "2026-09-28 10:05:00"
+    },
+    {
+      "_id": "vid-3",
+      "title": "Desk-to-Gym Reset",
+      "category": "corporate",
+      "category_label": "Corporate",
+      "video_url": "videos/hero-workout-1080p.mp4",
+      "poster": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=900&q=80",
+      "badge": "10 mins · Office Break",
+      "description": "Short, effective routines for energy, posture, fat loss and better focus at work.",
+      "doc_link": "college-women-diet-plan.html",
+      "created_at": "2026-09-28 10:10:00"
+    },
+    {
+      "_id": "vid-4",
+      "title": "Night Shift Recovery",
+      "category": "night-shift",
+      "category_label": "Night Shift",
+      "video_url": "videos/school-students.mp4",
+      "poster": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=900&q=80",
+      "badge": "15 mins · Low Cortisol",
+      "description": "Low-stress mobility, cardio and strength sessions that support irregular sleeping patterns.",
+      "doc_link": "college-women-diet-plan.html",
+      "created_at": "2026-09-28 10:15:00"
+    },
+    {
+      "_id": "vid-5",
+      "title": "Women Strength & Confidence",
+      "category": "women",
+      "category_label": "Women",
+      "video_url": "videos/homepage.mp4",
+      "poster": "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=900&q=80",
+      "badge": "20 mins · Full Body",
+      "description": "Supportive routines for lean strength, flexibility, posture and sustainable fat loss.",
+      "doc_link": "college-women-diet-plan.html",
+      "created_at": "2026-09-28 10:20:00"
+    },
+    {
+      "_id": "vid-6",
+      "title": "Upper Body Hypertrophy & Chest Blast",
+      "category": "muscle-building",
+      "category_label": "Muscle Building",
+      "video_url": "videos/hero-workout-1080p.mp4",
+      "poster": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80",
+      "badge": "25 mins · Heavy Strength",
+      "description": "Progressive overload chest, shoulder and triceps workout for building dense muscle mass and pressing power.",
+      "doc_link": "college-women-diet-plan.html",
+      "created_at": "2026-09-28 10:25:00"
+    },
+    {
+      "_id": "vid-7",
+      "title": "High-Intensity Fat Shred HIIT",
+      "category": "fat-loss",
+      "category_label": "Fat Loss / HIIT",
+      "video_url": "videos/school-students.mp4",
+      "poster": "https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?auto=format&fit=crop&w=900&q=80",
+      "badge": "15 mins · Max Burn",
+      "description": "Intense calorie burn and metabolic conditioning intervals to torch stubborn fat without extra equipment.",
+      "doc_link": "college-women-diet-plan.html",
+      "created_at": "2026-09-28 10:30:00"
+    },
+    {
+      "_id": "vid-8",
+      "title": "Spine & Hip Mobility Flow",
+      "category": "mobility",
+      "category_label": "Mobility & Yoga",
+      "video_url": "videos/homepage.mp4",
+      "poster": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=80",
+      "badge": "12 mins · Recovery",
+      "description": "Decompress lower back tension, open tight hips, and improve joint longevity with functional flows.",
+      "doc_link": "college-women-diet-plan.html",
+      "created_at": "2026-09-28 10:35:00"
+    },
+    {
+      "_id": "vid-9",
+      "title": "Calisthenics Bodyweight Masterclass",
+      "category": "others",
+      "category_label": "Others / Functional",
+      "video_url": "videos/hero-workout-1080p.mp4",
+      "poster": "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=900&q=80",
+      "badge": "20 mins · Bodyweight",
+      "description": "Pull-ups, dips, push-up progressions and core control to build real athletic power anywhere.",
+      "doc_link": "college-women-diet-plan.html",
+      "created_at": "2026-09-28 10:40:00"
+    },
+    {
+      "_id": "vid-10",
+      "title": "Titan Pro Deadlift & Squat Form Guide",
+      "category": "others",
+      "category_label": "Others / Coaching",
+      "video_url": "https://www.youtube.com/watch?v=op9kVnSso6Q",
+      "poster": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80",
+      "badge": "YouTube Masterclass",
+      "description": "Comprehensive video breakdown of safe lifting biomechanics, bracing, and injury prevention.",
+      "doc_link": "college-women-diet-plan.html",
+      "created_at": "2026-09-28 10:45:00"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod-1790703748508",
+      "name": "cfbh",
+      "category": "Accessories",
+      "price": 1999,
+      "originalPrice": 2499,
+      "badge": "New",
+      "rating": 4.8,
+      "reviews": 0,
+      "image": "assets/supplements.jpg",
+      "shortDesc": "fddff",
+      "tags": [],
+      "created_at": "2026-09-29 23:12:28",
+      "updated_at": "2026-09-29 23:12:28"
+    },
+    {
+      "id": "prod-1790703606790",
+      "name": "gdg",
+      "category": "Supplements",
+      "price": 1999,
+      "originalPrice": 2499,
+      "badge": "New",
+      "rating": 4.8,
+      "reviews": 0,
+      "image": "assets/supplements.jpg",
+      "shortDesc": "dgdfg",
+      "tags": [
+        "dggf"
+      ],
+      "created_at": "2026-09-29 23:10:06",
+      "updated_at": "2026-09-29 23:10:06"
+    },
+    {
+      "id": "prod-1",
+      "name": "VOLT 100% Pure Whey Isolate (2.5kg)",
+      "category": "Supplements",
+      "price": 4499,
+      "originalPrice": 5499,
+      "badge": "Best Seller",
+      "rating": 4.9,
+      "reviews": 428,
+      "image": "assets/supplements.jpg",
+      "shortDesc": "30g ultra-filtered whey isolate per serving with zero sugar and BCAAs.",
+      "tags": [
+        "Fast Absorbing",
+        "Zero Sugar",
+        "30g Protein"
+      ]
+    },
+    {
+      "id": "prod-2",
+      "name": "VOLT High-Stim Igniter Pre-Workout (300g)",
+      "category": "Supplements",
+      "price": 1999,
+      "originalPrice": 2499,
+      "badge": "New Formula",
+      "rating": 4.8,
+      "reviews": 312,
+      "image": "assets/supplements.jpg",
+      "shortDesc": "Explosive focus, 350mg caffeine, 6g L-Citrulline, and clinical Beta-Alanine.",
+      "tags": [
+        "Laser Focus",
+        "Skin-Splitting Pumps",
+        "Electrolytes"
+      ]
+    },
+    {
+      "id": "prod-3",
+      "name": "VOLT Pure Micronized Creatine Monohydrate (500g)",
+      "category": "Supplements",
+      "price": 1199,
+      "originalPrice": 1499,
+      "badge": "Essential",
+      "rating": 5.0,
+      "reviews": 640,
+      "image": "assets/supplements.jpg",
+      "shortDesc": "100% Creapure pharmaceutical grade for maximum ATP energy and strength.",
+      "tags": [
+        "Unflavored",
+        "100 Servings",
+        "Strength & Power"
+      ]
+    },
+    {
+      "id": "prod-4",
+      "name": "Titan Heavy Duty 10mm Leather Powerlifting Belt",
+      "category": "Gear",
+      "price": 2999,
+      "originalPrice": 3999,
+      "badge": "IPF Spec",
+      "rating": 4.9,
+      "reviews": 189,
+      "image": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&auto=format&fit=crop&q=80",
+      "shortDesc": "Premium vegetable-tanned genuine leather with quick-release steel lever.",
+      "tags": [
+        "Steel Lever",
+        "Heavy Duty",
+        "Lifetime Warranty"
+      ]
+    },
+    {
+      "id": "prod-5",
+      "name": "Titan Forge Heavyweight Acid-Wash Pump Cover",
+      "category": "Apparel",
+      "price": 1299,
+      "originalPrice": 1799,
+      "badge": "Trending",
+      "rating": 4.7,
+      "reviews": 215,
+      "image": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=80",
+      "shortDesc": "280 GSM luxury combed cotton with dropped shoulders and distress wash.",
+      "tags": [
+        "Oversized Fit",
+        "100% Combed Cotton",
+        "Breathable"
+      ]
+    },
+    {
+      "id": "prod-6",
+      "name": "Titan Pro Figure-8 Heavy Lifting Straps",
+      "category": "Gear",
+      "price": 699,
+      "originalPrice": 999,
+      "badge": "Must Have",
+      "rating": 4.8,
+      "reviews": 350,
+      "image": "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80",
+      "shortDesc": "Reinforced industrial stitch cotton canvas for extreme deadlifts beyond 300kg.",
+      "tags": [
+        "Extra Thick",
+        "Deadlift Safe",
+        "Anti-Slip"
+      ]
+    },
+    {
+      "id": "prod-7",
+      "name": "Volt Double-Wall Insulated Steel Shaker (750ml)",
+      "category": "Accessories",
+      "price": 899,
+      "originalPrice": 1199,
+      "badge": "Cold 24h",
+      "rating": 4.9,
+      "reviews": 172,
+      "image": "assets/supplements.jpg",
+      "shortDesc": "Surgical grade stainless steel with silent mixing mesh and zero odor retention.",
+      "tags": [
+        "BPA Free",
+        "Leak Proof",
+        "Cold All Day"
+      ]
+    },
+    {
+      "id": "prod-8",
+      "name": "Titan Pro Seamless Compression Performance Tights",
+      "category": "Apparel",
+      "price": 1499,
+      "originalPrice": 1999,
+      "badge": "Athletic",
+      "rating": 4.6,
+      "reviews": 140,
+      "image": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=80",
+      "shortDesc": "Graduated compression technology to boost circulation and muscle stability.",
+      "tags": [
+        "4-Way Stretch",
+        "Sweat Wicking",
+        "Phone Pocket"
+      ]
+    }
+  ]
+}
